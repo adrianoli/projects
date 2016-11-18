@@ -32,6 +32,7 @@
             this.uiPictureBox = new System.Windows.Forms.PictureBox();
             this.uiBtnEnter = new System.Windows.Forms.Button();
             this.uiBtnGoAway = new System.Windows.Forms.Button();
+            this.CreateDatabase = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.uiPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,11 +77,22 @@
             this.uiBtnGoAway.UseVisualStyleBackColor = true;
             this.uiBtnGoAway.Click += new System.EventHandler(this.uiBtnGoAway_Click);
             // 
+            // CreateDatabase
+            // 
+            this.CreateDatabase.Location = new System.Drawing.Point(190, 175);
+            this.CreateDatabase.Name = "CreateDatabase";
+            this.CreateDatabase.Size = new System.Drawing.Size(94, 23);
+            this.CreateDatabase.TabIndex = 5;
+            this.CreateDatabase.Text = "Baza danych";
+            this.CreateDatabase.UseVisualStyleBackColor = true;
+            this.CreateDatabase.Click += new System.EventHandler(this.CreateDatabase_Click);
+            // 
             // RestaurantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(296, 210);
+            this.Controls.Add(this.CreateDatabase);
             this.Controls.Add(this.uiBtnGoAway);
             this.Controls.Add(this.uiBtnEnter);
             this.Controls.Add(this.uiPictureBox);
@@ -103,6 +115,7 @@
         private System.Windows.Forms.PictureBox uiPictureBox;
         private System.Windows.Forms.Button uiBtnEnter;
         private System.Windows.Forms.Button uiBtnGoAway;
+        private System.Windows.Forms.Button CreateDatabase;
 
     }
 }

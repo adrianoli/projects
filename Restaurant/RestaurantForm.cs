@@ -1,4 +1,5 @@
-﻿using Restaurant.Forms;
+﻿using Restaurant.DataBase;
+using Restaurant.Forms;
 using Restaurant.Properties;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Restaurant
 
         private void uiBtnEnter_Click(object sender, EventArgs e)
         {
-            RestaurantInside resIns = new RestaurantInside();
+            ToppingsForDinner resIns = new ToppingsForDinner();
             resIns.Show();
 
             Task task = new Task(() =>
@@ -48,6 +49,12 @@ namespace Restaurant
         private void uiBtnGoAway_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void CreateDatabase_Click(object sender, EventArgs e)
+        {
+            PrepareDatabaseForm db = new PrepareDatabaseForm();
+            db.ShowDialog();
         }
     }
 }

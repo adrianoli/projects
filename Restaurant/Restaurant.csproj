@@ -11,6 +11,21 @@
     <AssemblyName>Restaurant</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +49,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>OtherDlls\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,11 +63,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\RestaurantInside.cs">
+    <Compile Include="DataBase\ConnectDB.cs" />
+    <Compile Include="DataBase\PrepareDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RestaurantInside.Designer.cs">
-      <DependentUpon>RestaurantInside.cs</DependentUpon>
+    <Compile Include="DataBase\PrepareDatabaseForm.Designer.cs">
+      <DependentUpon>PrepareDatabaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ToppingsForDinner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToppingsForDinner.Designer.cs">
+      <DependentUpon>ToppingsForDinner.cs</DependentUpon>
     </Compile>
     <Compile Include="RestaurantForm.cs">
       <SubType>Form</SubType>
@@ -59,8 +84,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\RestaurantInside.resx">
-      <DependentUpon>RestaurantInside.cs</DependentUpon>
+    <EmbeddedResource Include="DataBase\PrepareDatabaseForm.resx">
+      <DependentUpon>PrepareDatabaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToppingsForDinner.resx">
+      <DependentUpon>ToppingsForDinner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RestaurantForm.resx">
       <DependentUpon>RestaurantForm.cs</DependentUpon>
@@ -96,6 +124,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\table.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
