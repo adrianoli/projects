@@ -15,10 +15,10 @@ namespace Restaurant.Products.Drink
 
             switch (foodInformation.Name.ToUpper())
             {
-                case "COFFEE":
+                case "KAWA":
                     drink = new Coffee(foodInformation.ID, foodInformation.Name, foodInformation.Price);
                     break;
-                case "TEA":
+                case "HERBATA":
                     drink = new Tea(foodInformation.ID, foodInformation.Name, foodInformation.Price);
                     break;
                 case "COLA":

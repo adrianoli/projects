@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Restaurant.DataBase;
+using Restaurant.FormsLogic;
+using Restaurant.Products.MainDish;
+using Restaurant.Products.Pizza;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,50 +17,116 @@ namespace Restaurant.Forms
 {
     public partial class ToppingsForDinner : Form
     {
+        private IPizza _pizza;
+        private IMainDish _mainDish;
+        private ToppingsLogic _toppingsLogic;
+        private List<FoodInformation> _addToPizzaObjects;
+        private List<FoodInformation> _addToMainDishObjects;
+        private CultureInfo _cultureInfo;
+        private decimal _actualPrice = 0.0m;
+
         public ToppingsForDinner()
         {
             InitializeComponent();
+            _toppingsLogic = new ToppingsLogic();
+            _cultureInfo = new CultureInfo("pl-PL");
         }
 
-        private void label1_MouseClick(object sender, MouseEventArgs e)
+        public ToppingsForDinner(IPizza pizza) 
+            : this()
         {
-            Label lbl = new Label();
-            lbl.Text = string.Format("X {0}", label1.Text);
-            uiFlpToppingsChoosen.Controls.Add(lbl);
+            _pizza = pizza;
+            uiLblDinnerName.Text = pizza.Name();
+            _actualPrice = pizza.Price();
+            uiTxtPrice.Text = _actualPrice.ToString("C", _cultureInfo);
+            _addToPizzaObjects = _toppingsLogic.GetPizzaToppingsObjects();
+            AddMenu();
         }
 
-        private void label1_MouseHover(object sender, EventArgs e)
+        public ToppingsForDinner(IMainDish mainDish)
+            : this()
         {
-            label1.ForeColor = Color.Blue;
+            _mainDish = mainDish;
+            uiLblDinnerName.Text = mainDish.Name();
+            _actualPrice = mainDish.Price();
+            uiTxtPrice.Text = _actualPrice.ToString("C", _cultureInfo);
+            _addToMainDishObjects = _toppingsLogic.GetMainDishToppingsObjects();
+            AddMenu();
         }
 
-        private void label1_MouseLeave(object sender, EventArgs e)
+        private void AddMenu()
         {
-            label1.ForeColor = Color.Black;
+
+                foreach (FoodInformation food in _addToMainDishObjects ?? _addToPizzaObjects)
+                {
+                    Label label = new Label();
+                    label.AutoSize = true;
+                    label.MouseClick += new MouseEventHandler(AddElementClickEvent);
+                    label.MouseHover += new EventHandler(AddColorElementClickEvent);
+                    label.MouseLeave += new EventHandler(AddLeaveElementClickEvent);
+                    label.Text = string.Format("+ {0} {1}", food.Name, food.Price.ToString("C", _cultureInfo));
+                    label.Tag = food;
+
+                    uiFlpAddToppings.Controls.Add(label);
+               }
         }
 
-        private void label2_MouseClick(object sender, MouseEventArgs e)
+        private void AddElementClickEvent(object sender, EventArgs e)
         {
-            Label lbl = new Label();
-            lbl.Text = string.Format("X {0}", label2.Text);
-            lbl.MouseClick += new MouseEventHandler(DeleteControl);
-            uiFlpToppingsChoosen.Controls.Add(lbl);
+            Label lbl = (Label)sender;
+
+            Label label = new Label();
+            label.AutoSize = true;
+
+            label.MouseClick += new MouseEventHandler(RemovePizzaElementClickEvent);
+            label.MouseHover += new EventHandler(RemoveColorPizzaElementClickEvent);
+            label.MouseLeave += new EventHandler(RemoveLeavePizzaElementClickEvent);
+
+            FoodInformation food = (FoodInformation)lbl.Tag;
+            _actualPrice += food.Price;
+            uiTxtPrice.Text = _actualPrice.ToString("C", _cultureInfo);
+            label.Text = string.Format("x {0} {1}", food.Name, food.Price.ToString("C", _cultureInfo));
+
+            label.Tag = food;
+            uiFlpToppingsChoosen.Controls.Add(label);
+
         }
 
-        private void label2_MouseHover(object sender, EventArgs e)
+        private void AddColorElementClickEvent(object sender, EventArgs e)
         {
-            label2.ForeColor = Color.Blue;
+            Label lbl = (Label)sender;
+            lbl.ForeColor = Color.Blue;
         }
 
-        private void label2_MouseLeave(object sender, EventArgs e)
+        private void AddLeaveElementClickEvent(object sender, EventArgs e)
         {
-            label2.ForeColor = Color.Black;
+            Label lbl = (Label)sender;
+            lbl.ForeColor = Color.Black;
         }
 
-        private void DeleteControl(object sender, EventArgs e)
+        private void RemovePizzaElementClickEvent(object sender, EventArgs e)
         {
-            Label lbl = sender as Label;
-            lbl.Dispose();
+            Label lbl = (Label)sender;
+            if(!lbl.IsDisposed)
+            {
+                FoodInformation foodInformation = (FoodInformation)lbl.Tag;
+                _actualPrice -= foodInformation.Price;
+                uiTxtPrice.Text = _actualPrice.ToString("C", _cultureInfo);
+
+                lbl.Dispose();
+            }
+        }
+
+        private void RemoveColorPizzaElementClickEvent(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            lbl.ForeColor = Color.Red;
+        }
+
+        private void RemoveLeavePizzaElementClickEvent(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            lbl.ForeColor = Color.Black;
         }
     }
 }

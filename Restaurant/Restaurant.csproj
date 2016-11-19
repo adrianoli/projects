@@ -72,6 +72,7 @@
       <DependentUpon>PrepareDatabaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsLogic\OrderLogic.cs" />
+    <Compile Include="FormsLogic\ToppingsLogic.cs" />
     <Compile Include="Forms\Order.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +90,16 @@
     <Compile Include="Products\Drink\DrinkFactory.cs" />
     <Compile Include="Products\Drink\IDrink.cs" />
     <Compile Include="Products\Drink\Tea.cs" />
+    <Compile Include="Products\MainDish\AddToMainDish\Salad.cs" />
+    <Compile Include="Products\MainDish\AddToMainDish\Sauce.cs" />
+    <Compile Include="Products\MainDish\FishFries.cs" />
+    <Compile Include="Products\MainDish\HungarianCake.cs" />
+    <Compile Include="Products\MainDish\IMainDish.cs" />
+    <Compile Include="Products\MainDish\MainDishDecorator.cs" />
+    <Compile Include="Products\MainDish\MainDishFactory.cs" />
+    <Compile Include="Products\MainDish\ShnitzelFries.cs" />
+    <Compile Include="Products\MainDish\ShnitzelPotato.cs" />
+    <Compile Include="Products\MainDish\ShnitzelRice.cs" />
     <Compile Include="Products\Pizza\AddToPizza\DoubleCheese.cs" />
     <Compile Include="Products\Pizza\AddToPizza\Ham.cs" />
     <Compile Include="Products\Pizza\AddToPizza\Mushroom.cs" />
@@ -100,6 +111,10 @@
     <Compile Include="Products\Pizza\Tosca.cs" />
     <Compile Include="Products\Pizza\Vegetariana.cs" />
     <Compile Include="Products\Pizza\Venecia.cs" />
+    <Compile Include="Products\Soup\ChickenSoup.cs" />
+    <Compile Include="Products\Soup\ISoup.cs" />
+    <Compile Include="Products\Soup\SoupFactory.cs" />
+    <Compile Include="Products\Soup\TomatoSoup.cs" />
     <Compile Include="RestaurantForm.cs">
       <SubType>Form</SubType>
     </Compile>

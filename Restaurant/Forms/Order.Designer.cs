@@ -31,14 +31,15 @@
             this.uiTlpMainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.uiFlpFood = new System.Windows.Forms.FlowLayoutPanel();
             this.uiPnlEmail = new System.Windows.Forms.Panel();
-            this.uiLblSetEmail = new System.Windows.Forms.Label();
             this.uiTxtEmail = new System.Windows.Forms.TextBox();
+            this.uiLblSetEmail = new System.Windows.Forms.Label();
             this.uiPnlShoppingCard = new System.Windows.Forms.Panel();
-            this.uiClbShopingCard = new System.Windows.Forms.CheckedListBox();
-            this.uiTxtOrderCost = new System.Windows.Forms.TextBox();
-            this.uiLblOrderCost = new System.Windows.Forms.Label();
-            this.uiLblAttentionToOrder = new System.Windows.Forms.Label();
             this.uiTxtAttentionToOrder = new System.Windows.Forms.TextBox();
+            this.uiLblAttentionToOrder = new System.Windows.Forms.Label();
+            this.uiLblOrderCost = new System.Windows.Forms.Label();
+            this.uiTxtOrderCost = new System.Windows.Forms.TextBox();
+            this.uiClbShopingCard = new System.Windows.Forms.CheckedListBox();
+            this.uiBtnDelete = new System.Windows.Forms.Button();
             this.uiTlpMainLayout.SuspendLayout();
             this.uiPnlEmail.SuspendLayout();
             this.uiPnlShoppingCard.SuspendLayout();
@@ -81,15 +82,6 @@
             this.uiPnlEmail.Size = new System.Drawing.Size(479, 48);
             this.uiPnlEmail.TabIndex = 1;
             // 
-            // uiLblSetEmail
-            // 
-            this.uiLblSetEmail.AutoSize = true;
-            this.uiLblSetEmail.Location = new System.Drawing.Point(9, 19);
-            this.uiLblSetEmail.Name = "uiLblSetEmail";
-            this.uiLblSetEmail.Size = new System.Drawing.Size(89, 13);
-            this.uiLblSetEmail.TabIndex = 0;
-            this.uiLblSetEmail.Text = "Wprowadź Email:";
-            // 
             // uiTxtEmail
             // 
             this.uiTxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -99,8 +91,18 @@
             this.uiTxtEmail.Size = new System.Drawing.Size(366, 20);
             this.uiTxtEmail.TabIndex = 1;
             // 
+            // uiLblSetEmail
+            // 
+            this.uiLblSetEmail.AutoSize = true;
+            this.uiLblSetEmail.Location = new System.Drawing.Point(9, 19);
+            this.uiLblSetEmail.Name = "uiLblSetEmail";
+            this.uiLblSetEmail.Size = new System.Drawing.Size(89, 13);
+            this.uiLblSetEmail.TabIndex = 0;
+            this.uiLblSetEmail.Text = "Wprowadź Email:";
+            // 
             // uiPnlShoppingCard
             // 
+            this.uiPnlShoppingCard.Controls.Add(this.uiBtnDelete);
             this.uiPnlShoppingCard.Controls.Add(this.uiTxtAttentionToOrder);
             this.uiPnlShoppingCard.Controls.Add(this.uiLblAttentionToOrder);
             this.uiPnlShoppingCard.Controls.Add(this.uiLblOrderCost);
@@ -111,44 +113,6 @@
             this.uiPnlShoppingCard.Name = "uiPnlShoppingCard";
             this.uiPnlShoppingCard.Size = new System.Drawing.Size(203, 478);
             this.uiPnlShoppingCard.TabIndex = 2;
-            // 
-            // uiClbShopingCard
-            // 
-            this.uiClbShopingCard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiClbShopingCard.FormattingEnabled = true;
-            this.uiClbShopingCard.Location = new System.Drawing.Point(3, 3);
-            this.uiClbShopingCard.Name = "uiClbShopingCard";
-            this.uiClbShopingCard.Size = new System.Drawing.Size(197, 274);
-            this.uiClbShopingCard.TabIndex = 0;
-            // 
-            // uiTxtOrderCost
-            // 
-            this.uiTxtOrderCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTxtOrderCost.Location = new System.Drawing.Point(4, 299);
-            this.uiTxtOrderCost.Name = "uiTxtOrderCost";
-            this.uiTxtOrderCost.ReadOnly = true;
-            this.uiTxtOrderCost.Size = new System.Drawing.Size(196, 20);
-            this.uiTxtOrderCost.TabIndex = 1;
-            // 
-            // uiLblOrderCost
-            // 
-            this.uiLblOrderCost.AutoSize = true;
-            this.uiLblOrderCost.Location = new System.Drawing.Point(3, 280);
-            this.uiLblOrderCost.Name = "uiLblOrderCost";
-            this.uiLblOrderCost.Size = new System.Drawing.Size(74, 13);
-            this.uiLblOrderCost.TabIndex = 2;
-            this.uiLblOrderCost.Text = "Łączna suma:";
-            // 
-            // uiLblAttentionToOrder
-            // 
-            this.uiLblAttentionToOrder.AutoSize = true;
-            this.uiLblAttentionToOrder.Location = new System.Drawing.Point(3, 322);
-            this.uiLblAttentionToOrder.Name = "uiLblAttentionToOrder";
-            this.uiLblAttentionToOrder.Size = new System.Drawing.Size(113, 13);
-            this.uiLblAttentionToOrder.TabIndex = 3;
-            this.uiLblAttentionToOrder.Text = "Uwagi do zamówienia:";
             // 
             // uiTxtAttentionToOrder
             // 
@@ -162,6 +126,55 @@
             this.uiTxtAttentionToOrder.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.uiTxtAttentionToOrder.Size = new System.Drawing.Size(188, 127);
             this.uiTxtAttentionToOrder.TabIndex = 4;
+            // 
+            // uiLblAttentionToOrder
+            // 
+            this.uiLblAttentionToOrder.AutoSize = true;
+            this.uiLblAttentionToOrder.Location = new System.Drawing.Point(3, 322);
+            this.uiLblAttentionToOrder.Name = "uiLblAttentionToOrder";
+            this.uiLblAttentionToOrder.Size = new System.Drawing.Size(113, 13);
+            this.uiLblAttentionToOrder.TabIndex = 3;
+            this.uiLblAttentionToOrder.Text = "Uwagi do zamówienia:";
+            // 
+            // uiLblOrderCost
+            // 
+            this.uiLblOrderCost.AutoSize = true;
+            this.uiLblOrderCost.Location = new System.Drawing.Point(3, 280);
+            this.uiLblOrderCost.Name = "uiLblOrderCost";
+            this.uiLblOrderCost.Size = new System.Drawing.Size(74, 13);
+            this.uiLblOrderCost.TabIndex = 2;
+            this.uiLblOrderCost.Text = "Łączna suma:";
+            // 
+            // uiTxtOrderCost
+            // 
+            this.uiTxtOrderCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTxtOrderCost.Location = new System.Drawing.Point(4, 299);
+            this.uiTxtOrderCost.Name = "uiTxtOrderCost";
+            this.uiTxtOrderCost.ReadOnly = true;
+            this.uiTxtOrderCost.Size = new System.Drawing.Size(196, 20);
+            this.uiTxtOrderCost.TabIndex = 1;
+            // 
+            // uiClbShopingCard
+            // 
+            this.uiClbShopingCard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiClbShopingCard.FormattingEnabled = true;
+            this.uiClbShopingCard.Location = new System.Drawing.Point(3, 3);
+            this.uiClbShopingCard.Name = "uiClbShopingCard";
+            this.uiClbShopingCard.Size = new System.Drawing.Size(197, 244);
+            this.uiClbShopingCard.TabIndex = 0;
+            // 
+            // uiBtnDelete
+            // 
+            this.uiBtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBtnDelete.Location = new System.Drawing.Point(92, 253);
+            this.uiBtnDelete.Name = "uiBtnDelete";
+            this.uiBtnDelete.Size = new System.Drawing.Size(108, 23);
+            this.uiBtnDelete.TabIndex = 5;
+            this.uiBtnDelete.Text = "Usuń Zaznaczone";
+            this.uiBtnDelete.UseVisualStyleBackColor = true;
+            this.uiBtnDelete.Click += new System.EventHandler(this.uiBtnDelete_Click);
             // 
             // Order
             // 
@@ -194,5 +207,6 @@
         private System.Windows.Forms.CheckedListBox uiClbShopingCard;
         private System.Windows.Forms.TextBox uiTxtAttentionToOrder;
         private System.Windows.Forms.Label uiLblAttentionToOrder;
+        private System.Windows.Forms.Button uiBtnDelete;
     }
 }
