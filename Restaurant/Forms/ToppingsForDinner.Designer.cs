@@ -150,6 +150,7 @@
             // 
             // uiFlpToppingsChoosen
             // 
+            this.uiFlpToppingsChoosen.AutoScroll = true;
             this.uiFlpToppingsChoosen.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.uiFlpToppingsChoosen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiFlpToppingsChoosen.Location = new System.Drawing.Point(3, 38);

@@ -70,12 +70,28 @@
     <Compile Include="DataBase\PrepareDatabaseForm.Designer.cs">
       <DependentUpon>PrepareDatabaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Order.Designer.cs">
+      <DependentUpon>Order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ToppingsForDinner.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ToppingsForDinner.Designer.cs">
       <DependentUpon>ToppingsForDinner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Products\Pizza\AddToPizza\DoubleCheese.cs" />
+    <Compile Include="Products\Pizza\AddToPizza\Ham.cs" />
+    <Compile Include="Products\Pizza\AddToPizza\Mushroom.cs" />
+    <Compile Include="Products\Pizza\AddToPizza\Salami.cs" />
+    <Compile Include="Products\Pizza\IPizza.cs" />
+    <Compile Include="Products\Pizza\Margheritta.cs" />
+    <Compile Include="Products\Pizza\PizzaDecorator.cs" />
+    <Compile Include="Products\Pizza\Tosca.cs" />
+    <Compile Include="Products\Pizza\Vegetariana.cs" />
+    <Compile Include="Products\Pizza\Venecia.cs" />
     <Compile Include="RestaurantForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +102,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DataBase\PrepareDatabaseForm.resx">
       <DependentUpon>PrepareDatabaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Order.resx">
+      <DependentUpon>Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ToppingsForDinner.resx">
       <DependentUpon>ToppingsForDinner.cs</DependentUpon>
@@ -141,6 +160,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FormsLogic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
