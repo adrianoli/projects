@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant.Products.Pizza
+namespace Restaurant.Products.Drink
 {
-    public interface IPizza
+    public interface IDrink
     {
         int ID();
         string Name();

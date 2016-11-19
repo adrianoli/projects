@@ -12,16 +12,26 @@ namespace Restaurant.Products.Pizza
         private string _name;
         private decimal _price;
 
-        //public Tosca()
+        public Tosca(int id, string name, decimal price)
+        {
+            _id = id;
+            _name = name;
+            _price = price;
+        }
 
         public string Name()
         {
-            throw new NotImplementedException();
+            return _name;
         }
 
         public decimal Price()
         {
-            throw new NotImplementedException();
+            return _price;
+        }
+
+        public int ID()
+        {
+            return _id;
         }
     }
 }

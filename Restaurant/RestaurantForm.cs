@@ -24,8 +24,8 @@ namespace Restaurant
 
         private void uiBtnEnter_Click(object sender, EventArgs e)
         {
-            ToppingsForDinner resIns = new ToppingsForDinner();
-            resIns.Show();
+            Order order = new Order();
+            order.Show();
 
             Task task = new Task(() =>
                 {

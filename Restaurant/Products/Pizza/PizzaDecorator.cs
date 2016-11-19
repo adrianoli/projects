@@ -10,5 +10,6 @@ namespace Restaurant.Products.Pizza
     {
         public abstract string Name();
         public abstract decimal Price();
+        public abstract int ID();
     }
 }

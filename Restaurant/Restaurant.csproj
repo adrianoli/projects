@@ -64,12 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\ConnectDB.cs" />
+    <Compile Include="DataBase\FoodInformation.cs" />
     <Compile Include="DataBase\PrepareDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataBase\PrepareDatabaseForm.Designer.cs">
       <DependentUpon>PrepareDatabaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsLogic\OrderLogic.cs" />
     <Compile Include="Forms\Order.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +84,11 @@
     <Compile Include="Forms\ToppingsForDinner.Designer.cs">
       <DependentUpon>ToppingsForDinner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Products\Drink\Coffee.cs" />
+    <Compile Include="Products\Drink\Cola.cs" />
+    <Compile Include="Products\Drink\DrinkFactory.cs" />
+    <Compile Include="Products\Drink\IDrink.cs" />
+    <Compile Include="Products\Drink\Tea.cs" />
     <Compile Include="Products\Pizza\AddToPizza\DoubleCheese.cs" />
     <Compile Include="Products\Pizza\AddToPizza\Ham.cs" />
     <Compile Include="Products\Pizza\AddToPizza\Mushroom.cs" />
@@ -89,6 +96,7 @@
     <Compile Include="Products\Pizza\IPizza.cs" />
     <Compile Include="Products\Pizza\Margheritta.cs" />
     <Compile Include="Products\Pizza\PizzaDecorator.cs" />
+    <Compile Include="Products\Pizza\PizzaFactory.cs" />
     <Compile Include="Products\Pizza\Tosca.cs" />
     <Compile Include="Products\Pizza\Vegetariana.cs" />
     <Compile Include="Products\Pizza\Venecia.cs" />
@@ -161,9 +169,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FormsLogic\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

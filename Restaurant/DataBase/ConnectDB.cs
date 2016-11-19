@@ -60,5 +60,39 @@ namespace Restaurant.DataBase
                 CloseConnection();
             }
         }
+
+        public List<FoodInformation> GetRecordsBySql(string sql)
+        {
+            List<FoodInformation> foods = new List<FoodInformation>();
+
+            try
+            {
+                OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(sql, SqliteConnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                int id;
+                string name;
+                decimal price;
+
+                while (reader.Read())
+                {
+                    id = int.Parse(reader["ID"].ToString());
+                    name = reader["Name"].ToString();
+                    price = decimal.Parse(reader["Price"].ToString());
+
+                    foods.Add(new FoodInformation(id, name, price));
+                }
+            }
+            catch(SQLiteException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return foods;
+        }
     }
 }

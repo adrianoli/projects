@@ -49,63 +49,43 @@ namespace Restaurant.DataBase
         private void uiBtnCreateTable_Click(object sender, EventArgs e)
         {
             ConnectDB conDB = new ConnectDB();
-            conDB.ExecuteSql("create table Pizza (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal)");
-            conDB.ExecuteSql("create table AddToPizza (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal)");
-            conDB.ExecuteSql("create table MainDish (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal)");
-            conDB.ExecuteSql("create table AddToMainDish (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal)");
-            conDB.ExecuteSql("create table Soup (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal)");
-            conDB.ExecuteSql("create table Drink (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal)");
+            conDB.ExecuteSql("create table Pizza (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal, IsArchival int)");
+            conDB.ExecuteSql("create table AddToPizza (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal, IsArchival int)");
+            conDB.ExecuteSql("create table MainDish (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal, IsArchival int)");
+            conDB.ExecuteSql("create table AddToMainDish (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal, IsArchival int)");
+            conDB.ExecuteSql("create table Soup (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal, IsArchival int)");
+            conDB.ExecuteSql("create table Drink (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(50), Price decimal, IsArchival int)");
             
             MessageBox.Show("Tabele zostały utworzone");
         }
 
         private void uiBtnDeleteTable_Click(object sender, EventArgs e)
         {
-            ConnectDB conDB = new ConnectDB();
-
-            try
-            {
-                conDB.OpenConnection();
-                string sql = "select * from Pizza";
-                SQLiteCommand command = new SQLiteCommand(sql, conDB.SqliteConnection);
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    int id = int.Parse(reader["ID"].ToString());
-                    string name = reader["Name"].ToString();
-                    decimal price = (decimal)reader["Price"];
-                }
-                
-            }
-            finally
-            {
-                conDB.CloseConnection();
-            }
         }
 
         private void uiBtnAddData_Click(object sender, EventArgs e)
         {
             ConnectDB conDB = new ConnectDB();
-            conDB.ExecuteSql("insert into Pizza (Name, Price) values ('Margheritta', 20.0)");
-            conDB.ExecuteSql("insert into Pizza (Name, Price) values ('Vegetariana', 22.0)");
-            conDB.ExecuteSql("insert into Pizza (Name, Price) values ('Tosca', 25.0)");
-            conDB.ExecuteSql("insert into Pizza (Name, Price) values ('Venecia', 25.0)");
-            conDB.ExecuteSql("insert into AddToPizza (Name, Price) values ('Podwójny ser', 2.0)");
-            conDB.ExecuteSql("insert into AddToPizza (Name, Price) values ('Salami', 2.0)");
-            conDB.ExecuteSql("insert into AddToPizza (Name, Price) values ('Szynka', 2.0)");
-            conDB.ExecuteSql("insert into AddToPizza (Name, Price) values ('Pieczarki', 2.0)");
-            conDB.ExecuteSql("insert into MainDish (Name, Price) values ('Schabowy z frytkami', 30.0)");
-            conDB.ExecuteSql("insert into MainDish (Name, Price) values ('Schabowy z ryżem', 30.0)");
-            conDB.ExecuteSql("insert into MainDish (Name, Price) values ('Schabowy z ziemniakami', 30.0)");
-            conDB.ExecuteSql("insert into MainDish (Name, Price) values ('Ryba z frytkami', 28.0)");
-            conDB.ExecuteSql("insert into MainDish (Name, Price) values ('Placek po węgiersku', 27.0)");
-            conDB.ExecuteSql("insert into AddToMainDish (Name, Price) values ('Bar sałatkowy', 5.0)");
-            conDB.ExecuteSql("insert into AddToMainDish (Name, Price) values ('Zestaw sosów', 6.0)");
-            conDB.ExecuteSql("insert into Soup (Name, Price) values ('Pomidorowa', 12.0)");
-            conDB.ExecuteSql("insert into Soup (Name, Price) values ('Rosół', 10.0)");
-            conDB.ExecuteSql("insert into Drink (Name, Price) values ('Kawa', 5.0)");
-            conDB.ExecuteSql("insert into Drink (Name, Price) values ('Herbata', 5.0)");
-            conDB.ExecuteSql("insert into Drink (Name, Price) values ('Cola', 5.0)");
+            conDB.ExecuteSql("insert into Pizza (Name, Price, IsArchival) values ('Margheritta', 20.0, 0)");
+            conDB.ExecuteSql("insert into Pizza (Name, Price, IsArchival) values ('Vegetariana', 22.0, 0)");
+            conDB.ExecuteSql("insert into Pizza (Name, Price, IsArchival) values ('Tosca', 25.0, 0)");
+            conDB.ExecuteSql("insert into Pizza (Name, Price, IsArchival) values ('Venecia', 25.0, 0)");
+            conDB.ExecuteSql("insert into AddToPizza (Name, Price, IsArchival) values ('Podwójny ser', 2.0, 0)");
+            conDB.ExecuteSql("insert into AddToPizza (Name, Price, IsArchival) values ('Salami', 2.0, 0)");
+            conDB.ExecuteSql("insert into AddToPizza (Name, Price, IsArchival) values ('Szynka', 2.0, 0)");
+            conDB.ExecuteSql("insert into AddToPizza (Name, Price, IsArchival) values ('Pieczarki', 2.0, 0)");
+            conDB.ExecuteSql("insert into MainDish (Name, Price, IsArchival) values ('Schabowy z frytkami', 30.0, 0)");
+            conDB.ExecuteSql("insert into MainDish (Name, Price, IsArchival) values ('Schabowy z ryżem', 30.0, 0)");
+            conDB.ExecuteSql("insert into MainDish (Name, Price, IsArchival) values ('Schabowy z ziemniakami', 30.0, 0)");
+            conDB.ExecuteSql("insert into MainDish (Name, Price, IsArchival) values ('Ryba z frytkami', 28.0, 0)");
+            conDB.ExecuteSql("insert into MainDish (Name, Price, IsArchival) values ('Placek po węgiersku', 27.0, 0)");
+            conDB.ExecuteSql("insert into AddToMainDish (Name, Price, IsArchival) values ('Bar sałatkowy', 5.0, 0)");
+            conDB.ExecuteSql("insert into AddToMainDish (Name, Price, IsArchival) values ('Zestaw sosów', 6.0, 0)");
+            conDB.ExecuteSql("insert into Soup (Name, Price, IsArchival) values ('Pomidorowa', 12.0, 0)");
+            conDB.ExecuteSql("insert into Soup (Name, Price, IsArchival) values ('Rosół', 10.0, 0)");
+            conDB.ExecuteSql("insert into Drink (Name, Price, IsArchival) values ('Kawa', 5.0, 0)");
+            conDB.ExecuteSql("insert into Drink (Name, Price, IsArchival) values ('Herbata', 5.0, 0)");
+            conDB.ExecuteSql("insert into Drink (Name, Price, IsArchival) values ('Cola', 5.0, 0)");
 
             MessageBox.Show("Dane zostały dodane");
         }

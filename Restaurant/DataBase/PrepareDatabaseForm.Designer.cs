@@ -31,7 +31,6 @@
             this.uiBtnCreateDatabase = new System.Windows.Forms.Button();
             this.ConnectDbTest = new System.Windows.Forms.Button();
             this.uiBtnCreateTable = new System.Windows.Forms.Button();
-            this.uiBtnDeleteTable = new System.Windows.Forms.Button();
             this.uiBtnAddData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -65,19 +64,9 @@
             this.uiBtnCreateTable.UseVisualStyleBackColor = true;
             this.uiBtnCreateTable.Click += new System.EventHandler(this.uiBtnCreateTable_Click);
             // 
-            // uiBtnDeleteTable
-            // 
-            this.uiBtnDeleteTable.Location = new System.Drawing.Point(13, 73);
-            this.uiBtnDeleteTable.Name = "uiBtnDeleteTable";
-            this.uiBtnDeleteTable.Size = new System.Drawing.Size(143, 23);
-            this.uiBtnDeleteTable.TabIndex = 3;
-            this.uiBtnDeleteTable.Text = "Usuń tabele";
-            this.uiBtnDeleteTable.UseVisualStyleBackColor = true;
-            this.uiBtnDeleteTable.Click += new System.EventHandler(this.uiBtnDeleteTable_Click);
-            // 
             // uiBtnAddData
             // 
-            this.uiBtnAddData.Location = new System.Drawing.Point(13, 103);
+            this.uiBtnAddData.Location = new System.Drawing.Point(13, 72);
             this.uiBtnAddData.Name = "uiBtnAddData";
             this.uiBtnAddData.Size = new System.Drawing.Size(143, 23);
             this.uiBtnAddData.TabIndex = 4;
@@ -89,9 +78,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 270);
+            this.ClientSize = new System.Drawing.Size(347, 127);
             this.Controls.Add(this.uiBtnAddData);
-            this.Controls.Add(this.uiBtnDeleteTable);
             this.Controls.Add(this.uiBtnCreateTable);
             this.Controls.Add(this.ConnectDbTest);
             this.Controls.Add(this.uiBtnCreateDatabase);
@@ -109,7 +97,6 @@
         private System.Windows.Forms.Button uiBtnCreateDatabase;
         private System.Windows.Forms.Button ConnectDbTest;
         private System.Windows.Forms.Button uiBtnCreateTable;
-        private System.Windows.Forms.Button uiBtnDeleteTable;
         private System.Windows.Forms.Button uiBtnAddData;
     }
 }
