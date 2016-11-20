@@ -8,11 +8,22 @@ namespace Restaurant.FormsLogic.Objects
 {
     public class OrderObject
     {
+        [System.ComponentModel.DisplayName("Identyfikator")]
         public int ID { get; set; }
+
+        [System.ComponentModel.DisplayName("E-mail")]
         public string Email { get; set; }
+
+        [System.ComponentModel.DisplayName("Ilość produktów")]
         public int ProductCount { get; set; }
+
+        [System.ComponentModel.DisplayName("Koszt (zł)")]
         public decimal Price { get; set; }
+
+        [System.ComponentModel.DisplayName("Data zamówienia")]
         public DateTime OrderDate { get; set; }
+
+        [System.ComponentModel.DisplayName("Uwagi")]
         public string AttentionToOrder { get; set; }
     }
 }

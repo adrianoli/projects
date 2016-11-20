@@ -196,6 +196,8 @@ namespace Restaurant.Forms
                 MessageBox.Show(message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            _orderLogic.ShowHistory(uiTxtEmail.Text);
         }
 
         private void uiBtnSendOrder_Click(object sender, EventArgs e)
@@ -225,6 +227,8 @@ namespace Restaurant.Forms
 
             OrderObject orderObject = CreateOrderObject();
             _orderLogic.CreateOrder(orderObject, addressObject, orderProductObjects);
+            //TODO: Należy w tym miejscu wysłać maila.
+            Close();
         }
 
         private OrderObject CreateOrderObject()

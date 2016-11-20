@@ -118,6 +118,13 @@ namespace Restaurant.FormsLogic
             }
         }
 
+        public void ShowHistory(string email)
+        {
+            List<OrderObject> orders = _connectDB.GetOrders(email);
+            OrderHistoryForm orderHistory = new OrderHistoryForm(orders);
+            orderHistory.Show();
+        }
+
         private bool EmailValidation(ref string message, string email)
         {
             try

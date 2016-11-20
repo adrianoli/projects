@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurant.FormsLogic.Objects;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -115,6 +116,68 @@ namespace Restaurant.DataBase
             }
 
             return value;
+        }
+
+        public List<OrderObject> GetOrders(string email)
+        {
+            List<OrderObject> orders = new List<OrderObject>();
+            string sql = string.Empty;
+
+            if(email.ToUpper().Trim() == "ADMIN")
+            {
+                sql = "select * from orders order by ID desc";
+            }
+            else
+            {
+                sql = string.Format("select * from orders where Email = '{0}' order by ID desc", email);
+            }
+
+            try
+            {
+                OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(sql, SqliteConnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                
+                int id;
+                string emailFromBase;
+                decimal price;
+                int productCount;
+                string orderDate;
+                string attention;
+                
+
+                OrderObject orderObject;
+
+                while (reader.Read())
+                {
+                    id = int.Parse(reader["ID"].ToString());
+                    emailFromBase = reader["Email"].ToString();
+                    price = decimal.Parse(reader["Price"].ToString());
+                    productCount = int.Parse(reader["ProductCount"].ToString());
+                    orderDate = reader["OrderDate"].ToString();
+                    attention = reader["Attention"].ToString();
+
+                    orderObject = new OrderObject();
+                    orderObject.ID = id;
+                    orderObject.Email = emailFromBase;
+                    orderObject.Price = price;
+                    orderObject.ProductCount = productCount;
+                    orderObject.OrderDate = DateTime.ParseExact(orderDate, "yyyy-MM-dd HH:mm",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                    orderObject.AttentionToOrder = attention;
+                    orders.Add(orderObject);
+                }
+            }
+            catch (SQLiteException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return orders;
         }
     }
 }
