@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,12 @@ namespace Restaurant.Products.Pizza
         public int ID()
         {
             return _id;
+        }
+
+        public override string ToString()
+        {
+            CultureInfo cultureInfo = new CultureInfo("pl-PL");
+            return string.Format("{0} - {1}", _name, _price.ToString("C", cultureInfo));
         }
     }
 }

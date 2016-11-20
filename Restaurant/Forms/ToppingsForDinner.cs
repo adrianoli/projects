@@ -54,6 +54,16 @@ namespace Restaurant.Forms
             AddMenu();
         }
 
+        public IPizza Pizza
+        {
+            get { return _pizza; }
+        }
+
+        public IMainDish MainDish
+        {
+            get { return _mainDish; }
+        }
+
         private void AddMenu()
         {
 
@@ -127,6 +137,35 @@ namespace Restaurant.Forms
         {
             Label lbl = (Label)sender;
             lbl.ForeColor = Color.Black;
+        }
+
+        private void ToppingsForDinner_SizeChanged(object sender, EventArgs e)
+        {
+            uiLblDinnerName.Left = (uiPnlDinnerName.Width - uiLblDinnerName.Width) / 2;
+            uiLblDinnerName.Top = (uiPnlDinnerName.Height - uiLblDinnerName.Height) / 2;
+        }
+
+        private void uiBtnAccept_Click(object sender, EventArgs e)
+        {
+            List<FoodInformation> foodInformations = new List<FoodInformation>();
+
+            foreach(Control control in uiFlpToppingsChoosen.Controls)
+            {
+                Label lbl = (Label)control;
+                foodInformations.Add((FoodInformation)lbl.Tag);
+            }
+
+            if(_pizza != null)
+            {
+                _pizza = _toppingsLogic.CustomPizza(_pizza, foodInformations);
+            }
+            else if (_mainDish != null)
+            {
+                _mainDish = _toppingsLogic.CustomMainDish(_mainDish, foodInformations);
+            }
+
+            this.DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

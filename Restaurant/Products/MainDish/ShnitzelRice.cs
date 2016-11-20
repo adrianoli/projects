@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,12 @@ namespace Restaurant.Products.MainDish
         public decimal Price()
         {
             return _price;
+        }
+
+        public override string ToString()
+        {
+            CultureInfo cultureInfo = new CultureInfo("pl-PL");
+            return string.Format("{0} - {1}", Name(), Price().ToString("C", cultureInfo));
         }
     }
 }

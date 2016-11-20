@@ -114,9 +114,10 @@ namespace Restaurant.Forms
             
             if(toppings.ShowDialog() == DialogResult.OK)
             {
-
+                uiClbShopingCard.Items.Add(toppings.Pizza);
+                _orderCost += toppings.Pizza.Price();
+                uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
             }
-
         }
 
         private void MainDishClickEvent(object sender, EventArgs e)
@@ -127,7 +128,9 @@ namespace Restaurant.Forms
 
             if (toppings.ShowDialog() == DialogResult.OK)
             {
-
+                uiClbShopingCard.Items.Add(toppings.MainDish);
+                _orderCost += toppings.MainDish.Price();
+                uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
             }
         }
 
@@ -155,7 +158,9 @@ namespace Restaurant.Forms
             {
                 if(uiClbShopingCard.CheckedItems[i] is IPizza)
                 {
-
+                    IPizza pizza = uiClbShopingCard.CheckedItems[i] as IPizza;
+                    _orderCost -= pizza.Price();
+                    uiClbShopingCard.Items.RemoveAt(uiClbShopingCard.Items.IndexOf(uiClbShopingCard.CheckedItems[i]));
                 }
                 else if(uiClbShopingCard.CheckedItems[i] is IDrink)
                 {
@@ -171,7 +176,9 @@ namespace Restaurant.Forms
                 }
                 else if(uiClbShopingCard.CheckedItems[i] is IMainDish)
                 {
-
+                    IMainDish mainDish = uiClbShopingCard.CheckedItems[i] as IMainDish;
+                    _orderCost -= mainDish.Price();
+                    uiClbShopingCard.Items.RemoveAt(uiClbShopingCard.Items.IndexOf(uiClbShopingCard.CheckedItems[i]));
                 }
             }
 

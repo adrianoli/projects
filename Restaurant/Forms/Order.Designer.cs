@@ -34,12 +34,12 @@
             this.uiTxtEmail = new System.Windows.Forms.TextBox();
             this.uiLblSetEmail = new System.Windows.Forms.Label();
             this.uiPnlShoppingCard = new System.Windows.Forms.Panel();
+            this.uiBtnDelete = new System.Windows.Forms.Button();
             this.uiTxtAttentionToOrder = new System.Windows.Forms.TextBox();
             this.uiLblAttentionToOrder = new System.Windows.Forms.Label();
             this.uiLblOrderCost = new System.Windows.Forms.Label();
             this.uiTxtOrderCost = new System.Windows.Forms.TextBox();
             this.uiClbShopingCard = new System.Windows.Forms.CheckedListBox();
-            this.uiBtnDelete = new System.Windows.Forms.Button();
             this.uiTlpMainLayout.SuspendLayout();
             this.uiPnlEmail.SuspendLayout();
             this.uiPnlShoppingCard.SuspendLayout();
@@ -114,6 +114,17 @@
             this.uiPnlShoppingCard.Size = new System.Drawing.Size(203, 478);
             this.uiPnlShoppingCard.TabIndex = 2;
             // 
+            // uiBtnDelete
+            // 
+            this.uiBtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBtnDelete.Location = new System.Drawing.Point(92, 253);
+            this.uiBtnDelete.Name = "uiBtnDelete";
+            this.uiBtnDelete.Size = new System.Drawing.Size(108, 23);
+            this.uiBtnDelete.TabIndex = 5;
+            this.uiBtnDelete.Text = "Usuń Zaznaczone";
+            this.uiBtnDelete.UseVisualStyleBackColor = true;
+            this.uiBtnDelete.Click += new System.EventHandler(this.uiBtnDelete_Click);
+            // 
             // uiTxtAttentionToOrder
             // 
             this.uiTxtAttentionToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -159,22 +170,13 @@
             // 
             this.uiClbShopingCard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiClbShopingCard.CheckOnClick = true;
             this.uiClbShopingCard.FormattingEnabled = true;
+            this.uiClbShopingCard.HorizontalScrollbar = true;
             this.uiClbShopingCard.Location = new System.Drawing.Point(3, 3);
             this.uiClbShopingCard.Name = "uiClbShopingCard";
             this.uiClbShopingCard.Size = new System.Drawing.Size(197, 244);
             this.uiClbShopingCard.TabIndex = 0;
-            // 
-            // uiBtnDelete
-            // 
-            this.uiBtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBtnDelete.Location = new System.Drawing.Point(92, 253);
-            this.uiBtnDelete.Name = "uiBtnDelete";
-            this.uiBtnDelete.Size = new System.Drawing.Size(108, 23);
-            this.uiBtnDelete.TabIndex = 5;
-            this.uiBtnDelete.Text = "Usuń Zaznaczone";
-            this.uiBtnDelete.UseVisualStyleBackColor = true;
-            this.uiBtnDelete.Click += new System.EventHandler(this.uiBtnDelete_Click);
             // 
             // Order
             // 

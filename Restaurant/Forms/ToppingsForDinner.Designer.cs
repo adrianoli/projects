@@ -30,16 +30,18 @@
         {
             this.uiFlpToppingsChoosen = new System.Windows.Forms.FlowLayoutPanel();
             this.uiPnlDinnerName = new System.Windows.Forms.Panel();
+            this.uiLblDinnerName = new System.Windows.Forms.Label();
             this.uiTlpLastPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.uiPnlAccept = new System.Windows.Forms.Panel();
             this.uiPnlPriceInformation = new System.Windows.Forms.Panel();
+            this.uiTxtPrice = new System.Windows.Forms.TextBox();
+            this.uiPnlAccept = new System.Windows.Forms.Panel();
+            this.uiBtnAccept = new System.Windows.Forms.Button();
             this.uiTlpMainPanel = new System.Windows.Forms.TableLayoutPanel();
             this.uiFlpAddToppings = new System.Windows.Forms.FlowLayoutPanel();
-            this.uiLblDinnerName = new System.Windows.Forms.Label();
-            this.uiTxtPrice = new System.Windows.Forms.TextBox();
             this.uiPnlDinnerName.SuspendLayout();
             this.uiTlpLastPanel.SuspendLayout();
             this.uiPnlPriceInformation.SuspendLayout();
+            this.uiPnlAccept.SuspendLayout();
             this.uiTlpMainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +64,14 @@
             this.uiPnlDinnerName.Size = new System.Drawing.Size(354, 29);
             this.uiPnlDinnerName.TabIndex = 1;
             // 
+            // uiLblDinnerName
+            // 
+            this.uiLblDinnerName.AutoSize = true;
+            this.uiLblDinnerName.Location = new System.Drawing.Point(160, 6);
+            this.uiLblDinnerName.Name = "uiLblDinnerName";
+            this.uiLblDinnerName.Size = new System.Drawing.Size(0, 13);
+            this.uiLblDinnerName.TabIndex = 0;
+            // 
             // uiTlpLastPanel
             // 
             this.uiTlpLastPanel.ColumnCount = 2;
@@ -77,14 +87,6 @@
             this.uiTlpLastPanel.Size = new System.Drawing.Size(354, 31);
             this.uiTlpLastPanel.TabIndex = 0;
             // 
-            // uiPnlAccept
-            // 
-            this.uiPnlAccept.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlAccept.Location = new System.Drawing.Point(180, 3);
-            this.uiPnlAccept.Name = "uiPnlAccept";
-            this.uiPnlAccept.Size = new System.Drawing.Size(171, 25);
-            this.uiPnlAccept.TabIndex = 1;
-            // 
             // uiPnlPriceInformation
             // 
             this.uiPnlPriceInformation.Controls.Add(this.uiTxtPrice);
@@ -93,6 +95,35 @@
             this.uiPnlPriceInformation.Name = "uiPnlPriceInformation";
             this.uiPnlPriceInformation.Size = new System.Drawing.Size(171, 25);
             this.uiPnlPriceInformation.TabIndex = 0;
+            // 
+            // uiTxtPrice
+            // 
+            this.uiTxtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTxtPrice.Location = new System.Drawing.Point(0, 0);
+            this.uiTxtPrice.Name = "uiTxtPrice";
+            this.uiTxtPrice.ReadOnly = true;
+            this.uiTxtPrice.Size = new System.Drawing.Size(171, 20);
+            this.uiTxtPrice.TabIndex = 0;
+            // 
+            // uiPnlAccept
+            // 
+            this.uiPnlAccept.Controls.Add(this.uiBtnAccept);
+            this.uiPnlAccept.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnlAccept.Location = new System.Drawing.Point(180, 3);
+            this.uiPnlAccept.Name = "uiPnlAccept";
+            this.uiPnlAccept.Size = new System.Drawing.Size(171, 25);
+            this.uiPnlAccept.TabIndex = 1;
+            // 
+            // uiBtnAccept
+            // 
+            this.uiBtnAccept.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiBtnAccept.Location = new System.Drawing.Point(0, 0);
+            this.uiBtnAccept.Name = "uiBtnAccept";
+            this.uiBtnAccept.Size = new System.Drawing.Size(171, 25);
+            this.uiBtnAccept.TabIndex = 0;
+            this.uiBtnAccept.Text = "Do koszyka";
+            this.uiBtnAccept.UseVisualStyleBackColor = true;
+            this.uiBtnAccept.Click += new System.EventHandler(this.uiBtnAccept_Click);
             // 
             // uiTlpMainPanel
             // 
@@ -121,23 +152,6 @@
             this.uiFlpAddToppings.Size = new System.Drawing.Size(354, 134);
             this.uiFlpAddToppings.TabIndex = 7;
             // 
-            // uiLblDinnerName
-            // 
-            this.uiLblDinnerName.AutoSize = true;
-            this.uiLblDinnerName.Location = new System.Drawing.Point(160, 6);
-            this.uiLblDinnerName.Name = "uiLblDinnerName";
-            this.uiLblDinnerName.Size = new System.Drawing.Size(0, 13);
-            this.uiLblDinnerName.TabIndex = 0;
-            // 
-            // uiTxtPrice
-            // 
-            this.uiTxtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTxtPrice.Location = new System.Drawing.Point(0, 0);
-            this.uiTxtPrice.Name = "uiTxtPrice";
-            this.uiTxtPrice.ReadOnly = true;
-            this.uiTxtPrice.Size = new System.Drawing.Size(171, 20);
-            this.uiTxtPrice.TabIndex = 0;
-            // 
             // ToppingsForDinner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,11 +161,13 @@
             this.Name = "ToppingsForDinner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AccessoriesForDinner";
+            this.SizeChanged += new System.EventHandler(this.ToppingsForDinner_SizeChanged);
             this.uiPnlDinnerName.ResumeLayout(false);
             this.uiPnlDinnerName.PerformLayout();
             this.uiTlpLastPanel.ResumeLayout(false);
             this.uiPnlPriceInformation.ResumeLayout(false);
             this.uiPnlPriceInformation.PerformLayout();
+            this.uiPnlAccept.ResumeLayout(false);
             this.uiTlpMainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -168,6 +184,7 @@
         private System.Windows.Forms.FlowLayoutPanel uiFlpAddToppings;
         private System.Windows.Forms.Label uiLblDinnerName;
         private System.Windows.Forms.TextBox uiTxtPrice;
+        private System.Windows.Forms.Button uiBtnAccept;
 
     }
 }

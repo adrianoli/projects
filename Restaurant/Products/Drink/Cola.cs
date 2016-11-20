@@ -38,7 +38,7 @@ namespace Restaurant.Products.Drink
         public override string ToString()
         {
             CultureInfo cultureInfo = new CultureInfo("pl-PL");
-            return string.Format("{0} {1}", _name, _price.ToString("C", cultureInfo));
+            return string.Format("{0} - {1}", _name, _price.ToString("C", cultureInfo));
         }
     }
 }

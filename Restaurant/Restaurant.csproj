@@ -90,6 +90,7 @@
     <Compile Include="Products\Drink\DrinkFactory.cs" />
     <Compile Include="Products\Drink\IDrink.cs" />
     <Compile Include="Products\Drink\Tea.cs" />
+    <Compile Include="Products\MainDish\AddToMainDish\AddToMainDishFactory.cs" />
     <Compile Include="Products\MainDish\AddToMainDish\Salad.cs" />
     <Compile Include="Products\MainDish\AddToMainDish\Sauce.cs" />
     <Compile Include="Products\MainDish\FishFries.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Products\MainDish\ShnitzelFries.cs" />
     <Compile Include="Products\MainDish\ShnitzelPotato.cs" />
     <Compile Include="Products\MainDish\ShnitzelRice.cs" />
+    <Compile Include="Products\Pizza\AddToPizza\AddToPizzaFactory.cs" />
     <Compile Include="Products\Pizza\AddToPizza\DoubleCheese.cs" />
     <Compile Include="Products\Pizza\AddToPizza\Ham.cs" />
     <Compile Include="Products\Pizza\AddToPizza\Mushroom.cs" />
