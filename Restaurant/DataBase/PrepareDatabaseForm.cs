@@ -89,5 +89,15 @@ namespace Restaurant.DataBase
 
             MessageBox.Show("Dane zostały dodane");
         }
+
+        private void uiBtnOrderTable_Click(object sender, EventArgs e)
+        {
+            ConnectDB conDB = new ConnectDB();
+            conDB.ExecuteSql("create table Orders (ID INTEGER PRIMARY KEY AUTOINCREMENT, Email varchar(50), Price decimal, ProductCount int, OrderDate varchar(30), Attention varchar(1000))");
+            conDB.ExecuteSql("create table Product (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name varchar(150), OrderFK INTEGER)");
+            conDB.ExecuteSql("create table Address (ID INTEGER PRIMARY KEY AUTOINCREMENT, Street varchar(50), HouseNumber varchar(10), FlatNumber varchar(10), City varchar(50), PhoneNumber int, OrderFK INTEGER)");
+
+            MessageBox.Show("Tabele zostały utworzone");
+        }
     }
 }

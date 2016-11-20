@@ -32,13 +32,14 @@
             this.ConnectDbTest = new System.Windows.Forms.Button();
             this.uiBtnCreateTable = new System.Windows.Forms.Button();
             this.uiBtnAddData = new System.Windows.Forms.Button();
+            this.uiBtnOrderTable = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // uiBtnCreateDatabase
             // 
             this.uiBtnCreateDatabase.Location = new System.Drawing.Point(13, 13);
             this.uiBtnCreateDatabase.Name = "uiBtnCreateDatabase";
-            this.uiBtnCreateDatabase.Size = new System.Drawing.Size(143, 23);
+            this.uiBtnCreateDatabase.Size = new System.Drawing.Size(149, 23);
             this.uiBtnCreateDatabase.TabIndex = 0;
             this.uiBtnCreateDatabase.Text = "Utwórz bazę danych";
             this.uiBtnCreateDatabase.UseVisualStyleBackColor = true;
@@ -58,7 +59,7 @@
             // 
             this.uiBtnCreateTable.Location = new System.Drawing.Point(13, 43);
             this.uiBtnCreateTable.Name = "uiBtnCreateTable";
-            this.uiBtnCreateTable.Size = new System.Drawing.Size(143, 23);
+            this.uiBtnCreateTable.Size = new System.Drawing.Size(149, 23);
             this.uiBtnCreateTable.TabIndex = 2;
             this.uiBtnCreateTable.Text = "Utwórz tabele";
             this.uiBtnCreateTable.UseVisualStyleBackColor = true;
@@ -68,17 +69,28 @@
             // 
             this.uiBtnAddData.Location = new System.Drawing.Point(13, 72);
             this.uiBtnAddData.Name = "uiBtnAddData";
-            this.uiBtnAddData.Size = new System.Drawing.Size(143, 23);
+            this.uiBtnAddData.Size = new System.Drawing.Size(149, 23);
             this.uiBtnAddData.TabIndex = 4;
             this.uiBtnAddData.Text = "Załaduj początkowe dane";
             this.uiBtnAddData.UseVisualStyleBackColor = true;
             this.uiBtnAddData.Click += new System.EventHandler(this.uiBtnAddData_Click);
             // 
+            // uiBtnOrderTable
+            // 
+            this.uiBtnOrderTable.Location = new System.Drawing.Point(13, 102);
+            this.uiBtnOrderTable.Name = "uiBtnOrderTable";
+            this.uiBtnOrderTable.Size = new System.Drawing.Size(149, 23);
+            this.uiBtnOrderTable.TabIndex = 5;
+            this.uiBtnOrderTable.Text = "Tabele do historii zamówień";
+            this.uiBtnOrderTable.UseVisualStyleBackColor = true;
+            this.uiBtnOrderTable.Click += new System.EventHandler(this.uiBtnOrderTable_Click);
+            // 
             // PrepareDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 127);
+            this.ClientSize = new System.Drawing.Size(347, 135);
+            this.Controls.Add(this.uiBtnOrderTable);
             this.Controls.Add(this.uiBtnAddData);
             this.Controls.Add(this.uiBtnCreateTable);
             this.Controls.Add(this.ConnectDbTest);
@@ -98,5 +110,6 @@
         private System.Windows.Forms.Button ConnectDbTest;
         private System.Windows.Forms.Button uiBtnCreateTable;
         private System.Windows.Forms.Button uiBtnAddData;
+        private System.Windows.Forms.Button uiBtnOrderTable;
     }
 }

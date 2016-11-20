@@ -1,5 +1,6 @@
 ﻿using Restaurant.DataBase;
 using Restaurant.FormsLogic;
+using Restaurant.FormsLogic.Objects;
 using Restaurant.Products.Drink;
 using Restaurant.Products.MainDish;
 using Restaurant.Products.Pizza;
@@ -110,13 +111,14 @@ namespace Restaurant.Forms
         {
             Button button = sender as Button;
             IPizza pizza = PizzaFactory.CreatePizza(button.Tag as FoodInformation);
-            ToppingsForDinner toppings = new ToppingsForDinner(pizza);
-            
-            if(toppings.ShowDialog() == DialogResult.OK)
+            using (ToppingsForDinner toppings = new ToppingsForDinner(pizza))
             {
-                uiClbShopingCard.Items.Add(toppings.Pizza);
-                _orderCost += toppings.Pizza.Price();
-                uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
+                if (toppings.ShowDialog() == DialogResult.OK)
+                {
+                    uiClbShopingCard.Items.Add(toppings.Pizza);
+                    _orderCost += toppings.Pizza.Price();
+                    uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
+                }
             }
         }
 
@@ -124,13 +126,14 @@ namespace Restaurant.Forms
         {
             Button button = sender as Button;
             IMainDish mainDish = MainDishFactory.CreateMainDish(button.Tag as FoodInformation);
-            ToppingsForDinner toppings = new ToppingsForDinner(mainDish);
-
-            if (toppings.ShowDialog() == DialogResult.OK)
+            using (ToppingsForDinner toppings = new ToppingsForDinner(mainDish))
             {
-                uiClbShopingCard.Items.Add(toppings.MainDish);
-                _orderCost += toppings.MainDish.Price();
-                uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
+                if (toppings.ShowDialog() == DialogResult.OK)
+                {
+                    uiClbShopingCard.Items.Add(toppings.MainDish);
+                    _orderCost += toppings.MainDish.Price();
+                    uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
+                }
             }
         }
 
@@ -183,6 +186,57 @@ namespace Restaurant.Forms
             }
 
             uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
+        }
+
+        private void uiBtnOrderHistory_Click(object sender, EventArgs e)
+        {
+            string message = string.Empty;
+            if (!_orderLogic.EmailValidationToHistory(ref message, uiTxtEmail.Text))
+            {
+                MessageBox.Show(message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void uiBtnSendOrder_Click(object sender, EventArgs e)
+        {
+            string message;
+            if(!_orderLogic.Validate(out message, uiTxtEmail.Text, uiClbShopingCard.Items.Count))
+            {
+                MessageBox.Show(message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            AddressObject addressObject = _orderLogic.CreateAddress();
+
+            if(addressObject == null)
+            {
+                MessageBox.Show("Zamówienie nie zostanie wysłane nie został podany adres.", "Uwaga", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            List<OrderProductObject> orderProductObjects = new List<OrderProductObject>();
+
+            foreach(object obj in uiClbShopingCard.Items)
+            {
+                orderProductObjects.Add(new OrderProductObject(obj.ToString()));
+            }
+
+            OrderObject orderObject = CreateOrderObject();
+            _orderLogic.CreateOrder(orderObject, addressObject, orderProductObjects);
+        }
+
+        private OrderObject CreateOrderObject()
+        {
+            OrderObject orderObject = new OrderObject();
+            orderObject.Email = uiTxtEmail.Text;
+            orderObject.ProductCount = uiClbShopingCard.Items.Count;
+            orderObject.Price = _orderCost;
+            orderObject.OrderDate = DateTime.Now;
+            orderObject.AttentionToOrder = uiTxtAttentionToOrder.Text;
+
+            return orderObject;
         }
     }
 }

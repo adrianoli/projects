@@ -160,7 +160,7 @@
             this.Controls.Add(this.uiTlpMainPanel);
             this.Name = "ToppingsForDinner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AccessoriesForDinner";
+            this.Text = "Dodatki";
             this.SizeChanged += new System.EventHandler(this.ToppingsForDinner_SizeChanged);
             this.uiPnlDinnerName.ResumeLayout(false);
             this.uiPnlDinnerName.PerformLayout();

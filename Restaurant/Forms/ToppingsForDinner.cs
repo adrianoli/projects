@@ -25,6 +25,8 @@ namespace Restaurant.Forms
         private CultureInfo _cultureInfo;
         private decimal _actualPrice = 0.0m;
 
+        private const short MaximumAddElement = 8;
+
         public ToppingsForDinner()
         {
             InitializeComponent();
@@ -83,6 +85,12 @@ namespace Restaurant.Forms
 
         private void AddElementClickEvent(object sender, EventArgs e)
         {
+            if(uiFlpToppingsChoosen.Controls.Count >= MaximumAddElement)
+            {
+                MessageBox.Show("Nie można dodać więcej dodatków", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Label lbl = (Label)sender;
 
             Label label = new Label();

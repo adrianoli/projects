@@ -94,5 +94,27 @@ namespace Restaurant.DataBase
 
             return foods;
         }
+
+        public long InsertOrderToDatabase(string sql)
+        {
+            long value = 0;
+
+            try
+            {
+                OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(sql, SqliteConnection);
+                command.ExecuteNonQuery();
+                
+                string select = @"select last_insert_rowid()";
+                command = new SQLiteCommand(select, SqliteConnection);
+                value = (long)command.ExecuteScalar();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return value;
+        }
     }
 }
