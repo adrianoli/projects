@@ -16,6 +16,7 @@ namespace Restaurant
     public partial class RestaurantForm : Form
     {
         private object obj = new Object();
+        private Order _order = null;
 
         public RestaurantForm()
         {
@@ -24,8 +25,22 @@ namespace Restaurant
 
         private void uiBtnEnter_Click(object sender, EventArgs e)
         {
-            Order order = new Order();
-            order.Show();
+            if(_order == null || _order.IsDisposed)
+            {
+                _order = new Order();
+                _order.Show();
+            }
+            else
+            {
+                if (_order.WindowState == FormWindowState.Minimized)
+                {
+                    _order.WindowState = FormWindowState.Normal;
+                }
+
+                _order.Focus();
+                return;
+            }
+            
 
             Task task = new Task(() =>
                 {

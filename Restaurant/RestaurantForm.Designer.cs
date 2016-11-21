@@ -85,6 +85,7 @@
             this.CreateDatabase.TabIndex = 5;
             this.CreateDatabase.Text = "Baza danych";
             this.CreateDatabase.UseVisualStyleBackColor = true;
+            this.CreateDatabase.Visible = false;
             this.CreateDatabase.Click += new System.EventHandler(this.CreateDatabase_Click);
             // 
             // RestaurantForm
