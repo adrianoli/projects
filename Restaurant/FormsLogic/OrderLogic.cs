@@ -3,11 +3,15 @@ using Restaurant.Forms;
 using Restaurant.FormsLogic.Objects;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Restaurant.FormsLogic
 {
@@ -105,6 +109,7 @@ namespace Restaurant.FormsLogic
                 orderObject.Email, orderObject.Price, orderObject.ProductCount, date, orderObject.AttentionToOrder);
 
             long orderFk = _connectDB.InsertOrderToDatabase(sql);
+            orderObject.ID = (int)orderFk;
 
             sql = string.Format("insert into Address (Street, HouseNumber, FlatNumber, City, PhoneNumber, OrderFK) values ('{0}', '{1}', '{2}', '{3}', {4}, {5})",
                 addressObject.Street, addressObject.HouseNumber, addressObject.FlatNumber, addressObject.City, addressObject.PhoneNumber, orderFk);
@@ -116,6 +121,50 @@ namespace Restaurant.FormsLogic
                 sql = string.Format("insert into Product (Name, OrderFK) values ('{0}', {1})", product.Name, orderFk);
                 _connectDB.ExecuteSql(sql);
             }
+
+            string subject = string.Format("Zamówienie o numerze: {0}", orderFk);
+            string body = OrderLogic.CreateOrderDetails(orderObject, addressObject, products);
+
+            SendMail(subject, body, orderObject.Email);
+        }
+
+        public static string CreateOrderDetails(OrderObject order, AddressObject address, List<OrderProductObject> products)
+        {
+            StringBuilder orderDatails = new StringBuilder();
+            orderDatails.AppendLine(string.Format("Zamówienie o numerze: {0}{1}", order.ID, Environment.NewLine));
+
+            foreach(OrderProductObject product in products)
+            {
+                orderDatails.AppendLine(string.Format("{0}",product.Name));
+            }
+
+            CultureInfo info = new CultureInfo("pl-PL");
+            orderDatails.AppendLine(string.Format("{1}Łączny koszt zamówienia: {0}{1}", order.Price.ToString("C", info), Environment.NewLine));
+
+            if(string.IsNullOrWhiteSpace(order.AttentionToOrder))
+            {
+                orderDatails.AppendLine(string.Format("Uwagi do zamówienia: Brak{0}", Environment.NewLine));
+            }
+            else
+            {
+                orderDatails.AppendLine(string.Format("Uwagi do zamówienia: {0}{1}",order.AttentionToOrder, Environment.NewLine));
+            }
+
+            orderDatails.AppendLine("Zamówienie zostało wysłane na adres:");
+
+            if(string.IsNullOrWhiteSpace(address.FlatNumber))
+            {
+                orderDatails.AppendLine(string.Format("{0} {1}",address.Street, address.HouseNumber));
+            }
+            else
+            {
+                orderDatails.AppendLine(string.Format("{0} {1} mieszkanie:{2}",address.Street, address.HouseNumber, address.FlatNumber));
+            }
+
+            orderDatails.AppendLine(string.Format("{0}", address.City));
+            orderDatails.AppendLine(string.Format("Numer telefonu komórkowego: {0}", address.PhoneNumber));
+
+            return orderDatails.ToString();
         }
 
         public void ShowHistory(string email)
@@ -153,6 +202,35 @@ namespace Restaurant.FormsLogic
             }
 
             return true;
+        }
+
+        private void SendMail(string subject, string message, string emailTo)
+        {
+            try
+            {
+                string emailFrom = ConfigurationManager.AppSettings["userName"];
+                string password = ConfigurationManager.AppSettings["password"];
+                string host = ConfigurationManager.AppSettings["host"];
+                string port = ConfigurationManager.AppSettings["port"];
+
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(host);
+                mail.From = new MailAddress(emailFrom);
+                mail.To.Add(emailTo);
+                mail.Subject = subject;
+                mail.Body = message;
+
+                SmtpServer.Port = int.Parse(port);
+                SmtpServer.Credentials = new System.Net.NetworkCredential(emailFrom, password);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+
+                MessageBox.Show("Zamówienie zostało wysłane na E-mail", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }

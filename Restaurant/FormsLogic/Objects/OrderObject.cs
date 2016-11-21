@@ -8,7 +8,7 @@ namespace Restaurant.FormsLogic.Objects
 {
     public class OrderObject
     {
-        [System.ComponentModel.DisplayName("Identyfikator")]
+        [System.ComponentModel.DisplayName("Numer zamówienia")]
         public int ID { get; set; }
 
         [System.ComponentModel.DisplayName("E-mail")]

@@ -17,11 +17,24 @@ namespace Restaurant.Forms
         {
             InitializeComponent();
             uiDgvOrderHistory.DataSource = orders;
+
+            if(uiDgvOrderHistory.Rows.Count == 0)
+            {
+                uiBtnLook.Enabled = false;
+            }
         }
 
         private void uiBtnLook_Click(object sender, EventArgs e)
         {
+            OrderObject order = uiDgvOrderHistory.CurrentRow.DataBoundItem as OrderObject;
 
+            if(order != null)
+            {
+                using(OrderDetails orderDetails = new OrderDetails(order))
+                {
+                    orderDetails.ShowDialog();
+                }
+            }
         }
 
         private void uiBtnClose_Click(object sender, EventArgs e)

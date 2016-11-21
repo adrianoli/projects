@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Restaurant.FormsLogic;
+using Restaurant.FormsLogic.Objects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,18 @@ namespace Restaurant.Forms
 {
     public partial class OrderDetails : Form
     {
-        public OrderDetails()
+        private OrderDetailsLogic orderDetailsLogic;
+
+        public OrderDetails(OrderObject order)
         {
             InitializeComponent();
+            orderDetailsLogic = new OrderDetailsLogic();
+            uiTxtOrder.Text = orderDetailsLogic.GetOrderDetails(order);
+        }
+
+        private void uiBtnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

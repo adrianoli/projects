@@ -179,5 +179,94 @@ namespace Restaurant.DataBase
 
             return orders;
         }
+
+        public AddressObject GetAddress(long orderId)
+        {
+            AddressObject address = null;
+
+            string sql = string.Format("select * from Address where OrderFK = {0}", orderId);
+
+            try
+            {
+                OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(sql, SqliteConnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                int id;
+                string street;
+                string houseNumber;
+                string flatNumber;
+                string city;
+                int phoneNumber;
+
+                while (reader.Read())
+                {
+                    id = int.Parse(reader["ID"].ToString());
+                    street = reader["Street"].ToString();
+                    houseNumber = reader["HouseNumber"].ToString();
+                    flatNumber = reader["FlatNumber"].ToString();
+                    city = reader["City"].ToString();
+                    phoneNumber = int.Parse(reader["PhoneNumber"].ToString());
+
+                    address = new AddressObject();
+                    address.ID = id;
+                    address.Street = street;
+                    address.HouseNumber = houseNumber;
+                    address.FlatNumber = flatNumber;
+                    address.City = city;
+                    address.PhoneNumber = phoneNumber;
+                }
+            }
+            catch (SQLiteException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return address;
+        }
+
+        public List<OrderProductObject> GetProducts(long orderId)
+        {
+            List<OrderProductObject> products = new List<OrderProductObject>();
+
+            string sql = string.Format("select * from Product where OrderFK = {0}", orderId);
+
+            try
+            {
+                OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(sql, SqliteConnection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                int id;
+                string name;
+
+                OrderProductObject product;
+
+                while (reader.Read())
+                {
+                    id = int.Parse(reader["ID"].ToString());
+                    name = reader["Name"].ToString();
+
+
+                    product = new OrderProductObject(name);
+                    product.ID = id;
+                    products.Add(product);
+                }
+            }
+            catch (SQLiteException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return products;
+        }
     }
 }
