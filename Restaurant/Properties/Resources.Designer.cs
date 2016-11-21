@@ -61,12 +61,93 @@ namespace Restaurant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uwaga.
+        /// </summary>
+        internal static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CloseDoor {
             get {
                 object obj = ResourceManager.GetObject("CloseDoor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pl-PL.
+        /// </summary>
+        internal static string CultureInfo_Message {
+            get {
+                return ResourceManager.GetString("CultureInfo_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie można złożyc zamówienia koszyk jest pusty..
+        /// </summary>
+        internal static string EmptyShoppingCard_Message {
+            get {
+                return ResourceManager.GetString("EmptyShoppingCard_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Błąd.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie zostało złożone i zostanie dostarczone. Natomiast nie można wysłać maila przepraszamy za utrudnienia. Komunikat błędu:{0}{0}{1}.
+        /// </summary>
+        internal static string ErrorSendMail_Message {
+            get {
+                return ResourceManager.GetString("ErrorSendMail_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informacja.
+        /// </summary>
+        internal static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie można dodać więcej dodatków.
+        /// </summary>
+        internal static string NotAddMoreToppings {
+            get {
+                return ResourceManager.GetString("NotAddMoreToppings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie nie zostanie wysłane nie został podany adres..
+        /// </summary>
+        internal static string NotSetEmailAddress {
+            get {
+                return ResourceManager.GetString("NotSetEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie zostały wypełnione wymagane pola.
+        /// </summary>
+        internal static string NotSetRequiredField {
+            get {
+                return ResourceManager.GetString("NotSetRequiredField", resourceCulture);
             }
         }
         
@@ -81,12 +162,102 @@ namespace Restaurant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uwagi do zamówienia: {0}{1}.
+        /// </summary>
+        internal static string OrderAttention_Message {
+            get {
+                return ResourceManager.GetString("OrderAttention_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uwagi do zamówienia: Brak{0}.
+        /// </summary>
+        internal static string OrderAttentionEmpty_Message {
+            get {
+                return ResourceManager.GetString("OrderAttentionEmpty_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1}Łączny koszt zamówienia: {0}{1}.
+        /// </summary>
+        internal static string OrderCost_Message {
+            get {
+                return ResourceManager.GetString("OrderCost_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie o numerze: {0}.
+        /// </summary>
+        internal static string OrderNumber_Message {
+            get {
+                return ResourceManager.GetString("OrderNumber_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie o numerze: {0}{1}.
+        /// </summary>
+        internal static string OrderNumber2_Message {
+            get {
+                return ResourceManager.GetString("OrderNumber2_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie zostało wysłane na adres:.
+        /// </summary>
+        internal static string OrderSend_Message {
+            get {
+                return ResourceManager.GetString("OrderSend_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamówienie zostało wysłane na E-mail.
+        /// </summary>
+        internal static string OrderSendToMail_Message {
+            get {
+                return ResourceManager.GetString("OrderSendToMail_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} mieszkanie: {2}.
+        /// </summary>
+        internal static string OrderStreetDetail_Message {
+            get {
+                return ResourceManager.GetString("OrderStreetDetail_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numer telefonu komórkowego: {0}.
+        /// </summary>
+        internal static string PhoneNumber_Message {
+            get {
+                return ResourceManager.GetString("PhoneNumber_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap table {
             get {
                 object obj = ResourceManager.GetObject("table", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieprawidłowy format adresu email.
+        /// </summary>
+        internal static string WrongFormatEmail_Message {
+            get {
+                return ResourceManager.GetString("WrongFormatEmail_Message", resourceCulture);
             }
         }
     }

@@ -5,6 +5,7 @@ using Restaurant.Products.Drink;
 using Restaurant.Products.MainDish;
 using Restaurant.Products.Pizza;
 using Restaurant.Products.Soup;
+using Restaurant.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace Restaurant.Forms
         {
             InitializeComponent();
             _orderLogic = new OrderLogic();
-            _cultureInfo = new CultureInfo("pl-PL");
+            _cultureInfo = new CultureInfo(Resources.CultureInfo_Message);
             Init();
 
         }
@@ -51,6 +52,7 @@ namespace Restaurant.Forms
             AddMenu();
         }
 
+        //Na podstawie danych z bazy(produkty) są tworzone dynamiczne kontrolki przycisków i ustawiane do nich zdarzenia.
         private void AddMenu()
         {
             foreach(FoodInformation food in _pizzaObjects)
@@ -107,6 +109,7 @@ namespace Restaurant.Forms
             }
         }
 
+        // Zdarzenie obsługujące tworzenie obiektu pizza
         private void PizzaClickEvent(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -122,6 +125,7 @@ namespace Restaurant.Forms
             }
         }
 
+        // Zdarzenie obsługujące tworzenie obiektu danie główne
         private void MainDishClickEvent(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -137,6 +141,7 @@ namespace Restaurant.Forms
             }
         }
 
+        // Zdarzenie obsługujące tworzenie obiektu zupa
         private void SoupClickEvent(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -146,6 +151,7 @@ namespace Restaurant.Forms
             uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
         }
 
+        // Zdarzenie obsługujące tworzenie obiektu napój
         private void DrinkClickEvent(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -155,6 +161,7 @@ namespace Restaurant.Forms
             uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
         }
 
+        // Zdarzenie usuwania zaznaczonych produktów z koszyka
         private void uiBtnDelete_Click(object sender, EventArgs e)
         {
             for(int i = uiClbShopingCard.CheckedItems.Count - 1; i >= 0; i--)
@@ -188,24 +195,26 @@ namespace Restaurant.Forms
             uiTxtOrderCost.Text = _orderCost.ToString("C", _cultureInfo);
         }
 
+        // Włączenie historii zamówień wczytywanej z bazy danych po adresie email. słowo admin podane w emailu wczytuje całą historię zamówień
         private void uiBtnOrderHistory_Click(object sender, EventArgs e)
         {
             string message = string.Empty;
             if (!_orderLogic.EmailValidationToHistory(ref message, uiTxtEmail.Text))
             {
-                MessageBox.Show(message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(message, Resources.Attention, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             _orderLogic.ShowHistory(uiTxtEmail.Text);
         }
 
+        // Zdarzenie wysyłania zamówienia. Występuje formatka do wprowadzania adresu. Utworzenie zamówienia w bazie danych plus wysłanie maila.
         private void uiBtnSendOrder_Click(object sender, EventArgs e)
         {
             string message;
             if(!_orderLogic.Validate(out message, uiTxtEmail.Text, uiClbShopingCard.Items.Count))
             {
-                MessageBox.Show(message, "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(message, Resources.Attention, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -213,7 +222,7 @@ namespace Restaurant.Forms
 
             if(addressObject == null)
             {
-                MessageBox.Show("Zamówienie nie zostanie wysłane nie został podany adres.", "Uwaga", MessageBoxButtons.OK,
+                MessageBox.Show(Resources.NotSetEmailAddress, Resources.Attention, MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
@@ -227,17 +236,17 @@ namespace Restaurant.Forms
 
             OrderObject orderObject = CreateOrderObject();
             _orderLogic.CreateOrder(orderObject, addressObject, orderProductObjects);
-            //TODO: Należy w tym miejscu wysłać maila.
             Close();
         }
 
+        // Tworzenie obiektu zamówienia
         private OrderObject CreateOrderObject()
         {
             OrderObject orderObject = new OrderObject();
             orderObject.Email = uiTxtEmail.Text;
             orderObject.ProductCount = uiClbShopingCard.Items.Count;
             orderObject.Price = _orderCost;
-            orderObject.OrderDate = DateTime.Now;
+            orderObject.OrderDate = string.Format("{0} {1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
             orderObject.AttentionToOrder = uiTxtAttentionToOrder.Text;
 
             return orderObject;

@@ -1,4 +1,5 @@
 ﻿using Restaurant.FormsLogic.Objects;
+using Restaurant.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,12 +40,13 @@ namespace Restaurant.Forms
             Close();
         }
 
+        // Walidacja wymaganych pól adresu
         private bool Validate()
         {
             if(string.IsNullOrWhiteSpace(uiTxtStreet.Text) || string.IsNullOrWhiteSpace(uiTxtHouseNumber.Text) ||
                 string.IsNullOrWhiteSpace(uiTxtCity.Text))
             {
-                MessageBox.Show("Nie zostały wypełnione wymagane pola", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.NotSetRequiredField, Resources.Attention, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

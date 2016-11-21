@@ -17,6 +17,7 @@ namespace Restaurant.FormsLogic
             _conDB = new ConnectDB();
         }
 
+        // Pobieranie z bazy produktów oraz adresu na podstawie ID zamówienia wybranego z historii zamówień
         public string GetOrderDetails(OrderObject orderObject)
         {
             AddressObject address = _conDB.GetAddress(orderObject.ID);

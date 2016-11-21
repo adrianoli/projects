@@ -1,6 +1,7 @@
 ﻿using Restaurant.DataBase;
 using Restaurant.Forms;
 using Restaurant.FormsLogic.Objects;
+using Restaurant.Properties;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,26 +25,31 @@ namespace Restaurant.FormsLogic
             _connectDB = new ConnectDB();
         }
 
+        // Pobieranie z bazy wszystkich niearchiwalnych obiektów pizza
         public List<FoodInformation> GetPizzaObjects()
         {
             return _connectDB.GetRecordsBySql("select * from Pizza where IsArchival = 0");
         }
 
+        // Pobieranie z bazy wszystkich niearchiwalnych obiektów dań głównych
         public List<FoodInformation> GetMainDishObjects()
         {
             return _connectDB.GetRecordsBySql("select * from MainDish where IsArchival = 0");
         }
 
+        // Pobieranie z bazy wszystkich niearchiwalnych obiektów zupa
         public List<FoodInformation> GetSoupObjects()
         {
             return _connectDB.GetRecordsBySql("select * from Soup where IsArchival = 0");
         }
 
+        // Pobieranie z bazy wszystkich niearchiwalnych obiektów napój
         public List<FoodInformation> GetDrinkObjects()
         {
             return _connectDB.GetRecordsBySql("select * from Drink where IsArchival = 0");
         }
 
+        // Walidacja występująca przy próbie wysłania zamówienia
         public bool Validate(out string message, string email, int productCount)
         {
             bool isValid = true;
@@ -62,6 +68,7 @@ namespace Restaurant.FormsLogic
             return isValid;
         }
 
+        // Walidacja poprawności adresu email dla Historii zamówień wyjątek słowo ADMIN, które pozwala wyświetlić historię wszystkich zamówień w aplikacji
         public bool EmailValidationToHistory(ref string message, string email)
         {
             if (email.ToUpper().Trim() == "ADMIN")
@@ -76,16 +83,17 @@ namespace Restaurant.FormsLogic
             }
             catch (ArgumentException)
             {
-                message = "Nieprawidłowy format adresu email";
+                message = Resources.WrongFormatEmail_Message;
                 return false;
             }
             catch (FormatException)
             {
-                message = "Nieprawidłowy format adresu email";
+                message = Resources.WrongFormatEmail_Message;
                 return false;
             }
         }
 
+        // Funkcja do tworzenia adresu odpala formularz do wypełnienia danych adresowych
         public AddressObject CreateAddress()
         {
             AddressObject addressObject = null;
@@ -101,9 +109,10 @@ namespace Restaurant.FormsLogic
             return addressObject;
         }
 
+        // Funkcja odpowiedzialna za utworzenie zamówienia i wysłanie maila. Zapisuje wszystkie dane na temat zamówienia, produktów i adresu do bazy a następnie wysyła maila z zamówieniem.
         public void CreateOrder(OrderObject orderObject, AddressObject addressObject, List<OrderProductObject> products)
         {
-            string date = string.Format("{0} {1}", orderObject.OrderDate.ToShortDateString(), orderObject.OrderDate.ToShortTimeString());
+            string date = orderObject.OrderDate;
 
             string sql = string.Format("insert into Orders (Email, Price, ProductCount, OrderDate, Attention) values ('{0}', '{1}', {2}, '{3}', '{4}')",
                 orderObject.Email, orderObject.Price, orderObject.ProductCount, date, orderObject.AttentionToOrder);
@@ -122,35 +131,36 @@ namespace Restaurant.FormsLogic
                 _connectDB.ExecuteSql(sql);
             }
 
-            string subject = string.Format("Zamówienie o numerze: {0}", orderFk);
+            string subject = string.Format(Resources.OrderNumber_Message, orderFk);
             string body = OrderLogic.CreateOrderDetails(orderObject, addressObject, products);
 
             SendMail(subject, body, orderObject.Email);
         }
 
+        // Funkcja przygotowuje treść szczegółów zamówienia wykorzystywana przy budowaniu treści maila i szczegółów zamówienia w historii zamówień
         public static string CreateOrderDetails(OrderObject order, AddressObject address, List<OrderProductObject> products)
         {
             StringBuilder orderDatails = new StringBuilder();
-            orderDatails.AppendLine(string.Format("Zamówienie o numerze: {0}{1}", order.ID, Environment.NewLine));
+            orderDatails.AppendLine(string.Format(Resources.OrderNumber2_Message, order.ID, Environment.NewLine));
 
             foreach(OrderProductObject product in products)
             {
                 orderDatails.AppendLine(string.Format("{0}",product.Name));
             }
 
-            CultureInfo info = new CultureInfo("pl-PL");
-            orderDatails.AppendLine(string.Format("{1}Łączny koszt zamówienia: {0}{1}", order.Price.ToString("C", info), Environment.NewLine));
+            CultureInfo info = new CultureInfo(Resources.CultureInfo_Message);
+            orderDatails.AppendLine(string.Format(Resources.OrderCost_Message, order.Price.ToString("C", info), Environment.NewLine));
 
             if(string.IsNullOrWhiteSpace(order.AttentionToOrder))
             {
-                orderDatails.AppendLine(string.Format("Uwagi do zamówienia: Brak{0}", Environment.NewLine));
+                orderDatails.AppendLine(string.Format(Resources.OrderAttentionEmpty_Message, Environment.NewLine));
             }
             else
             {
-                orderDatails.AppendLine(string.Format("Uwagi do zamówienia: {0}{1}",order.AttentionToOrder, Environment.NewLine));
+                orderDatails.AppendLine(string.Format(Resources.OrderAttention_Message ,order.AttentionToOrder, Environment.NewLine));
             }
 
-            orderDatails.AppendLine("Zamówienie zostało wysłane na adres:");
+            orderDatails.AppendLine(Resources.OrderSend_Message);
 
             if(string.IsNullOrWhiteSpace(address.FlatNumber))
             {
@@ -158,11 +168,11 @@ namespace Restaurant.FormsLogic
             }
             else
             {
-                orderDatails.AppendLine(string.Format("{0} {1} mieszkanie:{2}",address.Street, address.HouseNumber, address.FlatNumber));
+                orderDatails.AppendLine(string.Format(Resources.OrderStreetDetail_Message, address.Street, address.HouseNumber, address.FlatNumber));
             }
 
             orderDatails.AppendLine(string.Format("{0}", address.City));
-            orderDatails.AppendLine(string.Format("Numer telefonu komórkowego: {0}", address.PhoneNumber));
+            orderDatails.AppendLine(string.Format(Resources.PhoneNumber_Message, address.PhoneNumber));
 
             return orderDatails.ToString();
         }
@@ -174,6 +184,7 @@ namespace Restaurant.FormsLogic
             orderHistory.Show();
         }
 
+        // Walidacja adresu E-mail
         private bool EmailValidation(ref string message, string email)
         {
             try
@@ -183,12 +194,12 @@ namespace Restaurant.FormsLogic
             }
             catch(ArgumentException)
             {
-                message = "Nieprawidłowy format adresu email";
+                message = Resources.WrongFormatEmail_Message;
                 return false;
             }
             catch(FormatException)
             {
-                message = "Nieprawidłowy format adresu email";
+                message = Resources.WrongFormatEmail_Message;
                 return false;
             }
         }
@@ -197,13 +208,14 @@ namespace Restaurant.FormsLogic
         {
             if(productCount == 0)
             {
-                message = "Nie można złożyc zamówienia koszyk jest pusty.";
+                message = Resources.EmptyShoppingCard_Message;
                 return false;
             }
 
             return true;
         }
 
+        // Funkcja wysyłająca maila. Pobiera dane dotyczące serwera smtp z App.Config by działała funkjconalność należy wypełnić w App.Config poprawnie dane.
         private void SendMail(string subject, string message, string emailTo)
         {
             try
@@ -224,12 +236,12 @@ namespace Restaurant.FormsLogic
                 smtpServer.EnableSsl = true;
                 smtpServer.Send(mail);
 
-                MessageBox.Show("Zamówienie zostało wysłane na E-mail", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Resources.OrderSendToMail_Message, Resources.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
-                MessageBox.Show(string.Format("Zamówienie zostało złożone i zostanie dostarczone. Natomiast nie można wysłać maila przepraszamy za utrudnienia. Komunikat błędu:{0}{0}{1}"
-                    , Environment.NewLine, ex.Message), "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Resources.ErrorSendMail_Message, Environment.NewLine, ex.Message), 
+                    Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -21,7 +21,7 @@ namespace Restaurant.FormsLogic.Objects
         public decimal Price { get; set; }
 
         [System.ComponentModel.DisplayName("Data zamówienia")]
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
 
         [System.ComponentModel.DisplayName("Uwagi")]
         public string AttentionToOrder { get; set; }

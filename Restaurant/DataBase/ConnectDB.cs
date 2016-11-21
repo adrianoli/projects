@@ -162,8 +162,7 @@ namespace Restaurant.DataBase
                     orderObject.Email = emailFromBase;
                     orderObject.Price = price;
                     orderObject.ProductCount = productCount;
-                    orderObject.OrderDate = DateTime.ParseExact(orderDate, "yyyy-MM-dd HH:mm",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+                    orderObject.OrderDate = orderDate;
                     orderObject.AttentionToOrder = attention;
                     orders.Add(orderObject);
                 }

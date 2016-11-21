@@ -117,14 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Attention" xml:space="preserve">
+    <value>Uwaga</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CloseDoor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloseDoor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CultureInfo_Message" xml:space="preserve">
+    <value>pl-PL</value>
+  </data>
+  <data name="EmptyShoppingCard_Message" xml:space="preserve">
+    <value>Nie można złożyc zamówienia koszyk jest pusty.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="ErrorSendMail_Message" xml:space="preserve">
+    <value>Zamówienie zostało złożone i zostanie dostarczone. Natomiast nie można wysłać maila przepraszamy za utrudnienia. Komunikat błędu:{0}{0}{1}</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Informacja</value>
+  </data>
+  <data name="NotSetRequiredField" xml:space="preserve">
+    <value>Nie zostały wypełnione wymagane pola</value>
+  </data>
   <data name="OpenDoor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenDoor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OrderAttentionEmpty_Message" xml:space="preserve">
+    <value>Uwagi do zamówienia: Brak{0}</value>
+  </data>
+  <data name="OrderAttention_Message" xml:space="preserve">
+    <value>Uwagi do zamówienia: {0}{1}</value>
+  </data>
+  <data name="OrderCost_Message" xml:space="preserve">
+    <value>{1}Łączny koszt zamówienia: {0}{1}</value>
+  </data>
+  <data name="OrderNumber2_Message" xml:space="preserve">
+    <value>Zamówienie o numerze: {0}{1}</value>
+  </data>
+  <data name="OrderNumber_Message" xml:space="preserve">
+    <value>Zamówienie o numerze: {0}</value>
+  </data>
+  <data name="OrderSendToMail_Message" xml:space="preserve">
+    <value>Zamówienie zostało wysłane na E-mail</value>
+  </data>
+  <data name="OrderSend_Message" xml:space="preserve">
+    <value>Zamówienie zostało wysłane na adres:</value>
+  </data>
+  <data name="OrderStreetDetail_Message" xml:space="preserve">
+    <value>{0} {1} mieszkanie: {2}</value>
+  </data>
+  <data name="PhoneNumber_Message" xml:space="preserve">
+    <value>Numer telefonu komórkowego: {0}</value>
+  </data>
   <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\table.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WrongFormatEmail_Message" xml:space="preserve">
+    <value>Nieprawidłowy format adresu email</value>
+  </data>
+  <data name="NotAddMoreToppings" xml:space="preserve">
+    <value>Nie można dodać więcej dodatków</value>
+  </data>
+  <data name="NotSetEmailAddress" xml:space="preserve">
+    <value>Zamówienie nie zostanie wysłane nie został podany adres.</value>
   </data>
 </root>

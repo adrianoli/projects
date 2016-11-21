@@ -2,6 +2,7 @@
 using Restaurant.FormsLogic;
 using Restaurant.Products.MainDish;
 using Restaurant.Products.Pizza;
+using Restaurant.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,7 @@ namespace Restaurant.Forms
         {
             InitializeComponent();
             _toppingsLogic = new ToppingsLogic();
-            _cultureInfo = new CultureInfo("pl-PL");
+            _cultureInfo = new CultureInfo(Resources.CultureInfo_Message);
         }
 
         public ToppingsForDinner(IPizza pizza) 
@@ -66,9 +67,9 @@ namespace Restaurant.Forms
             get { return _mainDish; }
         }
 
+        //Funkcja dodaje dodatki do kontrolki i subskrybuje zdarzenia. W Tagu jest przechowywany obiekt dodatków z bazy
         private void AddMenu()
         {
-
                 foreach (FoodInformation food in _addToMainDishObjects ?? _addToPizzaObjects)
                 {
                     Label label = new Label();
@@ -83,11 +84,12 @@ namespace Restaurant.Forms
                }
         }
 
+        // Funkcja odpalana przy kliknięciu w dodatek. Tworzy dynamicznie nowy label umieszczany na innym panelu i blokuje dodawanie wybranego dodatku.
         private void AddElementClickEvent(object sender, EventArgs e)
         {
             if(uiFlpToppingsChoosen.Controls.Count >= MaximumAddElement)
             {
-                MessageBox.Show("Nie można dodać więcej dodatków", "Uwaga", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.NotAddMoreToppings, Resources.Attention, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -111,6 +113,7 @@ namespace Restaurant.Forms
 
         }
 
+        // Zmiana koloru po najechaniu myszką na label
         private void AddColorElementClickEvent(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
@@ -123,6 +126,7 @@ namespace Restaurant.Forms
             lbl.ForeColor = Color.Blue;
         }
 
+        // Powrót do domyślnego koloru gdy kursor myszki zniknie z labela.
         private void AddLeaveElementClickEvent(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
@@ -135,6 +139,7 @@ namespace Restaurant.Forms
             lbl.ForeColor = Color.Black;
         }
 
+        // Zdarzenie odpowiedzialne za usuwanie dodatków, których jednak nie chcemy zamówić. Gdy usuniemy dodatek z panelu wyboru znów staje się on aktywny.
         private void RemovePizzaElementClickEvent(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
@@ -177,6 +182,7 @@ namespace Restaurant.Forms
             uiLblDinnerName.Top = (uiPnlDinnerName.Height - uiLblDinnerName.Height) / 2;
         }
 
+        // Wykorzystanie wzorca projektowego Dekorator do dekorowania Pizzy lub Dań głównych dodatkami.
         private void uiBtnAccept_Click(object sender, EventArgs e)
         {
             List<FoodInformation> foodInformations = new List<FoodInformation>();
