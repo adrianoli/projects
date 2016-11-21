@@ -214,22 +214,22 @@ namespace Restaurant.FormsLogic
                 string port = ConfigurationManager.AppSettings["port"];
 
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient(host);
+                SmtpClient smtpServer = new SmtpClient(host);
                 mail.From = new MailAddress(emailFrom);
                 mail.To.Add(emailTo);
                 mail.Subject = subject;
                 mail.Body = message;
-
-                SmtpServer.Port = int.Parse(port);
-                SmtpServer.Credentials = new System.Net.NetworkCredential(emailFrom, password);
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(mail);
+                smtpServer.Port = int.Parse(port);
+                smtpServer.Credentials = new System.Net.NetworkCredential(emailFrom, password);
+                smtpServer.EnableSsl = true;
+                smtpServer.Send(mail);
 
                 MessageBox.Show("Zamówienie zostało wysłane na E-mail", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(string.Format("Zamówienie zostało złożone i zostanie dostarczone. Natomiast nie można wysłać maila przepraszamy za utrudnienia. Komunikat błędu:{0}{0}{1}"
+                    , Environment.NewLine, ex.Message), "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

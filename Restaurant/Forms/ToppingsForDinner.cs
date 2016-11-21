@@ -92,6 +92,7 @@ namespace Restaurant.Forms
             }
 
             Label lbl = (Label)sender;
+            lbl.Enabled = false;
 
             Label label = new Label();
             label.AutoSize = true;
@@ -113,12 +114,24 @@ namespace Restaurant.Forms
         private void AddColorElementClickEvent(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
+
+            if(!lbl.Enabled)
+            {
+                return;
+            }
+
             lbl.ForeColor = Color.Blue;
         }
 
         private void AddLeaveElementClickEvent(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
+
+            if (!lbl.Enabled)
+            {
+                return;
+            }
+
             lbl.ForeColor = Color.Black;
         }
 
@@ -132,6 +145,17 @@ namespace Restaurant.Forms
                 uiTxtPrice.Text = _actualPrice.ToString("C", _cultureInfo);
 
                 lbl.Dispose();
+
+                foreach (Control control in uiFlpAddToppings.Controls)
+                {
+                    Label label = (Label)control;
+                    FoodInformation food2 = (FoodInformation)label.Tag;
+                    if (food2.ID == foodInformation.ID)
+                    {
+                        label.Enabled = true;
+                        label.ForeColor = Color.Black;
+                    }
+                }
             }
         }
 

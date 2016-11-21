@@ -52,8 +52,8 @@
             // uiTlpMainLayout
             // 
             this.uiTlpMainLayout.ColumnCount = 2;
-            this.uiTlpMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.uiTlpMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.uiTlpMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiTlpMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTlpMainLayout.Controls.Add(this.uiFlpFood, 0, 0);
             this.uiTlpMainLayout.Controls.Add(this.uiPnlEmail, 0, 1);
             this.uiTlpMainLayout.Controls.Add(this.uiPnlShoppingCard, 1, 0);
@@ -73,7 +73,7 @@
             this.uiFlpFood.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiFlpFood.Location = new System.Drawing.Point(3, 3);
             this.uiFlpFood.Name = "uiFlpFood";
-            this.uiFlpFood.Size = new System.Drawing.Size(430, 478);
+            this.uiFlpFood.Size = new System.Drawing.Size(358, 478);
             this.uiFlpFood.TabIndex = 0;
             this.uiFlpFood.SizeChanged += new System.EventHandler(this.uiFlpFood_SizeChanged);
             // 
@@ -84,7 +84,7 @@
             this.uiPnlEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPnlEmail.Location = new System.Drawing.Point(3, 487);
             this.uiPnlEmail.Name = "uiPnlEmail";
-            this.uiPnlEmail.Size = new System.Drawing.Size(430, 48);
+            this.uiPnlEmail.Size = new System.Drawing.Size(358, 48);
             this.uiPnlEmail.TabIndex = 1;
             // 
             // uiTxtEmail
@@ -94,7 +94,7 @@
             this.uiTxtEmail.Location = new System.Drawing.Point(101, 16);
             this.uiTxtEmail.MaxLength = 50;
             this.uiTxtEmail.Name = "uiTxtEmail";
-            this.uiTxtEmail.Size = new System.Drawing.Size(317, 20);
+            this.uiTxtEmail.Size = new System.Drawing.Size(245, 20);
             this.uiTxtEmail.TabIndex = 1;
             // 
             // uiLblSetEmail
@@ -115,15 +115,15 @@
             this.uiPnlShoppingCard.Controls.Add(this.uiTxtOrderCost);
             this.uiPnlShoppingCard.Controls.Add(this.uiClbShopingCard);
             this.uiPnlShoppingCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnlShoppingCard.Location = new System.Drawing.Point(439, 3);
+            this.uiPnlShoppingCard.Location = new System.Drawing.Point(367, 3);
             this.uiPnlShoppingCard.Name = "uiPnlShoppingCard";
-            this.uiPnlShoppingCard.Size = new System.Drawing.Size(286, 478);
+            this.uiPnlShoppingCard.Size = new System.Drawing.Size(358, 478);
             this.uiPnlShoppingCard.TabIndex = 2;
             // 
             // uiBtnDelete
             // 
             this.uiBtnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBtnDelete.Location = new System.Drawing.Point(175, 253);
+            this.uiBtnDelete.Location = new System.Drawing.Point(247, 253);
             this.uiBtnDelete.Name = "uiBtnDelete";
             this.uiBtnDelete.Size = new System.Drawing.Size(108, 23);
             this.uiBtnDelete.TabIndex = 5;
@@ -142,7 +142,7 @@
             this.uiTxtAttentionToOrder.Multiline = true;
             this.uiTxtAttentionToOrder.Name = "uiTxtAttentionToOrder";
             this.uiTxtAttentionToOrder.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.uiTxtAttentionToOrder.Size = new System.Drawing.Size(271, 127);
+            this.uiTxtAttentionToOrder.Size = new System.Drawing.Size(343, 127);
             this.uiTxtAttentionToOrder.TabIndex = 4;
             // 
             // uiLblAttentionToOrder
@@ -170,7 +170,7 @@
             this.uiTxtOrderCost.Location = new System.Drawing.Point(4, 299);
             this.uiTxtOrderCost.Name = "uiTxtOrderCost";
             this.uiTxtOrderCost.ReadOnly = true;
-            this.uiTxtOrderCost.Size = new System.Drawing.Size(279, 20);
+            this.uiTxtOrderCost.Size = new System.Drawing.Size(351, 20);
             this.uiTxtOrderCost.TabIndex = 1;
             // 
             // uiClbShopingCard
@@ -182,7 +182,7 @@
             this.uiClbShopingCard.HorizontalScrollbar = true;
             this.uiClbShopingCard.Location = new System.Drawing.Point(3, 3);
             this.uiClbShopingCard.Name = "uiClbShopingCard";
-            this.uiClbShopingCard.Size = new System.Drawing.Size(280, 244);
+            this.uiClbShopingCard.Size = new System.Drawing.Size(352, 244);
             this.uiClbShopingCard.TabIndex = 0;
             // 
             // uiTlpHistoryAndSendOrder
@@ -193,19 +193,19 @@
             this.uiTlpHistoryAndSendOrder.Controls.Add(this.uiBtnOrderHistory, 0, 0);
             this.uiTlpHistoryAndSendOrder.Controls.Add(this.uiBtnSendOrder, 1, 0);
             this.uiTlpHistoryAndSendOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTlpHistoryAndSendOrder.Location = new System.Drawing.Point(439, 487);
+            this.uiTlpHistoryAndSendOrder.Location = new System.Drawing.Point(367, 487);
             this.uiTlpHistoryAndSendOrder.Name = "uiTlpHistoryAndSendOrder";
             this.uiTlpHistoryAndSendOrder.RowCount = 1;
             this.uiTlpHistoryAndSendOrder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiTlpHistoryAndSendOrder.Size = new System.Drawing.Size(286, 48);
+            this.uiTlpHistoryAndSendOrder.Size = new System.Drawing.Size(358, 48);
             this.uiTlpHistoryAndSendOrder.TabIndex = 3;
             // 
             // uiBtnOrderHistory
             // 
             this.uiBtnOrderHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBtnOrderHistory.Location = new System.Drawing.Point(3, 22);
+            this.uiBtnOrderHistory.Location = new System.Drawing.Point(6, 22);
             this.uiBtnOrderHistory.Name = "uiBtnOrderHistory";
-            this.uiBtnOrderHistory.Size = new System.Drawing.Size(137, 23);
+            this.uiBtnOrderHistory.Size = new System.Drawing.Size(170, 23);
             this.uiBtnOrderHistory.TabIndex = 0;
             this.uiBtnOrderHistory.Text = "Historia zamówień";
             this.uiBtnOrderHistory.UseVisualStyleBackColor = true;
@@ -215,9 +215,9 @@
             // 
             this.uiBtnSendOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBtnSendOrder.Location = new System.Drawing.Point(146, 22);
+            this.uiBtnSendOrder.Location = new System.Drawing.Point(182, 22);
             this.uiBtnSendOrder.Name = "uiBtnSendOrder";
-            this.uiBtnSendOrder.Size = new System.Drawing.Size(137, 23);
+            this.uiBtnSendOrder.Size = new System.Drawing.Size(173, 23);
             this.uiBtnSendOrder.TabIndex = 1;
             this.uiBtnSendOrder.Text = "Wyślij zamówienie";
             this.uiBtnSendOrder.UseVisualStyleBackColor = true;
