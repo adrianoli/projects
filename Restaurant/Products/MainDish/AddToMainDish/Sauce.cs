@@ -11,9 +11,6 @@ namespace Restaurant.Products.MainDish.AddToMainDish
     {
         private IMainDish _mainDish;
 
-        private string _name;
-        private decimal _price;
-
         public Sauce(IMainDish mainDish, string name, decimal price)
         {
             _mainDish = mainDish;
@@ -38,8 +35,7 @@ namespace Restaurant.Products.MainDish.AddToMainDish
 
         public override string ToString()
         {
-            CultureInfo cultureInfo = new CultureInfo("pl-PL");
-            return string.Format("{0} - {1}", Name(), Price().ToString("C", cultureInfo));
+            return base.ToString();
         }
     }
 }

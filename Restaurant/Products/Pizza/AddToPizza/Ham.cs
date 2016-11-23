@@ -11,9 +11,6 @@ namespace Restaurant.Products.Pizza.AddToPizza
     {
         private IPizza _pizza;
 
-        private string _name;
-        private decimal _price;
-
         public Ham(IPizza pizza, string name, decimal price)
         {
             _pizza = pizza;
@@ -38,8 +35,7 @@ namespace Restaurant.Products.Pizza.AddToPizza
 
         public override string ToString()
         {
-            CultureInfo cultureInfo = new CultureInfo("pl-PL");
-            return string.Format("{0} - {1}", Name(), Price().ToString("C", cultureInfo));
+            return base.ToString();
         }
     }
 }
